@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <f:loadBundle basename="language.lang" var="msg" />
+    <f:view locale="en">
+   
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/reset.css"/>
+        <h:outputStylesheet name="./css/design.css"/>
+        <title>JavaBeer</title>
+    </h:head>
+    
+    <h:body>
+        <div id="main-wrapper">
+            <header>
+                <div id="logo"></div>
+                <div id="search">
+                    <h:form>
+                        <p><h:inputText size="65" id="searchInput" />
+                        <h:commandButton action="#" image="resources/img/loupe.png" />
+                        </p>
+                    </h:form>
+                </div>
+                <div id="menu-language">
+                    <h:form>
+                        <p>
+                            <h:commandLink action="#" >fr</h:commandLink>
+                            <h:outputText value=" / "/>
+                            <span class="lang-selected"><h:commandLink action="#" >en</h:commandLink></span>
+                        </p>
+                    </h:form>
+                </div>
+                <div id="menu-header">
+                    <p>
+                        <h:link value="#{msg.h_account}" outcome="account.xhtml" id="account"></h:link>
+                        <h:graphicImage url="resources/img/separator.png" id="separator" />
+                        <h:graphicImage url="resources/img/caddie.png" id="caddi" />
+                        <h:link value="" outcome="cart.xhrml" id="cart">
+                            <h:outputText value="#{msg.h_cart}"/>
+                            <span id="qte">
+                                <h:outputText value="(0)"/>
+                            </span>
+                        </h:link>
+                    </p>
+                </div>
+            </header>
+		
+            <nav>
+                <ul>
+                    <li>
+                        <h:link value="#{msg.h_home}" outcome="index.xhtml" />
+                    </li>
+                    <li>
+                        <h:link value="#{msg.h_category}" outcome="category.xhtml" />
+                    </li>
+                    <li>
+                        <h:link value="#{msg.h_news}" outcome="news.xhtml" />
+                    </li>
+                    <li>
+                        <h:link value="#{msg.h_sales}" outcome="sales.xhtml" />
+                    </li>
+                    <li>
+                        <h:link value="#{msg.h_aboutUs}" outcome="aboutus.xhtml" />
+                    </li>
+                </ul>
+            </nav>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+        <footer>
+            <div id="header-footer">
+                <div id="navigate">
+                    <h1><h:outputText value="#{msg.f_navigate}"/></h1>
+                    <ul>
+                        <li>
+                            <h:link value="#{msg.f_home}" outcome="index.xhtml" />
+                        </li>
+                        <li>
+                            <h:link value="#{msg.f_aboutUs}" outcome="aboutus.xhtml" />
+                        </li>
+                        <li>
+                            <h:link value="#{msg.f_return}" outcome="return.xhtml" />
+                        </li>
+                        <li>
+                            <h:link value="#{msg.f_privacy}" outcome="privacy.xhtml" />
+                        </li>
+                        <li>
+                            <h:link value="#{msg.f_delivery}" outcome="delivery.xhtml" />
+                        </li>
+                    </ul>
+                </div>
+                <div id="contact">
+                    <h1><h:outputText value="#{msg.f_contactUs}"/></h1>
+                    <p id="contact-us">
+                        <h:outputText value="#{msg.f_phone}"/> : 0032.81.12.34.56<br />
+                        <h:outputText value="#{msg.f_fax}"/> : 0032.81.98.76.54<br />
+                        <h:outputText value="#{msg.f_mail}"/> : 
+                        <a class="mail" href="mailto:info@javabeer.com">info@javabeer.com</a>
+                    </p>
+                    <p>
+                        <h:link value="" outcome="maps.google.com">
+                            <h:graphicImage url="resources/img/map.png" class="img-float" title="Map" />
+                        </h:link>
+                        20 rue Joseph Calozet<br />
+                        5000 Namur<br />
+                        Belgium
+                    </p>
+                </div>
+                <div id="follow">
+                    <h1><h:outputText value="#{msg.f_followUs}"/></h1>
+                    <p>
+                        <h:link value="" outcome="http://facebook.com">
+                            <h:graphicImage url="resources/img/fb.png" title="#{msg.f_fb} Facebook" />
+                        </h:link>
+                        <h:link value="" outcome="http://twitter.com">
+                            <h:graphicImage url="resources/img/twitter.png" title="#{msg.f_fb} Twitter" />
+                        </h:link><br />
+                        <h:link value="" outcome="http://plus.google.com">
+                            <h:graphicImage url="resources/img/google.png"  title="#{msg.f_fb} Google+" />
+                        </h:link>
+                        <h:link value="" outcome="http://myspace.com">
+                            <h:graphicImage url="resources/img/myspace.png" title="#{msg.f_fb} MySpace" />
+                        </h:link>
+
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <p id="copyright">Copyright © 2013 JavaBeer Namur, Belgium. All rights reserved.</p>
+		
+    </div>
+
+    </h:body>
+    </f:view>
+</html>
