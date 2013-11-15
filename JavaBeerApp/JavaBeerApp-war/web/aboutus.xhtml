@@ -1,14 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
 
     <body>
 
         <ui:composition template="./defaultTemplate.xhtml">
 
             <ui:define name="content">
-                ABOUS US
+                <h1><h:outputText value="#{msg.about_mainTitle}"/></h1>
+                <p><h:outputText value="#{msg.about_description}"/></p>
+                <h2><h:outputText value="#{msg.about_title2}"/></h2>
+                <p><h:outputText value="#{msg.about_description2}"/></p>
             </ui:define>
 
         </ui:composition>
