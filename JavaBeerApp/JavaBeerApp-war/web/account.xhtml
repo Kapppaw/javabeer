@@ -8,7 +8,15 @@
         <ui:composition template="./defaultTemplate.xhtml">
 
             <ui:define name="content">
-                ACCOUNT
+                <section id="body">
+                    <article id="login">
+                        <h1><h:outputText value="#{msg.register_registrered}"/></h1>
+                    </article>
+                    <article id="register">
+                        <h1><h:outputText value="#{msg.register_new}"/></h1>
+                    </article>
+                    <article id="clear"></article>
+                </section>
             </ui:define>
 
         </ui:composition>
