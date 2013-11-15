@@ -8,7 +8,14 @@
         <ui:composition template="./defaultTemplate.xhtml">
 
             <ui:define name="content">
-                DELIVERY POLICY
+                <section id="body">
+                    <h1><h:outputText value="#{msg.delivery_mainTitle}"/></h1>
+                    <p><h:outputText value="#{msg.delivery_description}"/></p>
+                    <p><h:outputText value="#{msg.delivery_description2}"/></p>
+                    <h2><h:outputText value="#{msg.delivery_title2}"/></h2>
+                    <h:graphicImage url="resources/img/worldMap.png"/>
+                    <p><h:outputText value="#{msg.delivery_description3}"/></p>
+                </section>
             </ui:define>
 
         </ui:composition>
