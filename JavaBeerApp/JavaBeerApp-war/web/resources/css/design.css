@@ -278,6 +278,40 @@ p {
 #clear {
     clear: both;
 }
+.form {
+    margin-left: 50px;
+    font-size: 0.8em;
+}
+label {
+    display: block;
+    width: 150px;
+    margin-bottom: 8px;
+}
+input, select {
+    margin-bottom: 10px;
+}
+
+.button {
+    border: 2px solid #cccccc;
+    background-color: #4d7a80;
+    padding: 5px 15px;
+    color: white;
+    margin-top: 18px;
+    margin-bottom: 15px;
+}
+.required {
+    font-size: 0.9em;
+}
+
+.form h2 {
+    margin-left: -25px;
+    margin-top: 15px;
+}
+.messageErrorForm {
+    color: red;
+    font-size: 0.7em;
+}
+
 
 #categories {
     width: 250px;
