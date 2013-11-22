@@ -1,14 +1,40 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./defaultTemplate.xhtml">
 
             <ui:define name="content">
-                CART
+                <section id="body">
+                    <h1><h:outputText value="#{msg.order_title}"/></h1>
+                    <h:dataTable id="cartTable" headerClass="tableHeader" columnClasses="tableItem,tableQty, tablePrice">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText  value="#{msg.order_item}"/>
+                            </f:facet>
+                            <!-- <h:outputText value="#{item.price}" />  -->
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText  value="#{msg.order_quantity}"/>
+                            </f:facet>
+                            <!-- <h:outputText value="#{item.price}" />  -->
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText  value="#{msg.order_price}"/>
+                            </f:facet>
+                            <!-- <h:outputText value="#{item.price}" />  -->
+                        </h:column>
+                    </h:dataTable>
+                    
+                    
+                </section>
             </ui:define>
 
         </ui:composition>

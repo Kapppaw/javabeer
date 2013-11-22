@@ -399,6 +399,93 @@ input, select {
     font-size: 0.8em;
 }
 
+#cartTable {
+    width: 100%;
+    
+}
+table {
+    border-collapse: collapse; 
+}
+.tableHeader{
+    background-color: #ebf2f2;
+    padding: 7px 15px;
+    text-align: left;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+.tableItem {
+    width: 600px;
+}
+.tableQty {
+    width: 200px;
+}
+.tablePrice {
+    width: 150px;
+}
+
+
+
+.newsItem {
+    margin-bottom: 20px;
+    border: 1px solid #cccccc;
+    width: 1050px;
+    height: 200px;
+    padding-left: 25px;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+.newsImage {
+    float: left;
+    margin-right: 25px;
+    margin-top: -20px;
+}
+.newsItem p {
+    font-size: 0.8em;
+    padding-top: 20px;
+}
+.newsMoreInfo {
+    margin-left: 700px;
+}
+.newsMoreInfo a  {
+    color: black;
+    text-decoration: none;
+}
+.newsMoreInfo a:hover {
+    text-decoration: underline;
+}
+
+.salesItem {
+    margin-bottom: 20px;
+    border: 1px solid #cccccc;
+    width: 1050px;
+    height: 200px;
+    padding-left: 25px;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+.salesImage {
+    float: left;
+    margin-right: 25px;
+    margin-top: -20px;
+}
+.salesItem p {
+    font-size: 0.8em;
+    padding-top: 20px;
+}
+.salesMoreInfo {
+    margin-left: 700px;
+}
+.salesMoreInfo a  {
+    color: black;
+    text-decoration: none;
+}
+.salesMoreInfo a:hover {
+    text-decoration: underline;
+}
+.salesNewPrice {
+    font-weight: bold;
+}
+
 footer {
     width: 1200px;
     height: 275px;

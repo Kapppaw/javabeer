@@ -1,14 +1,56 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
 
     <body>
 
         <ui:composition template="./defaultTemplate.xhtml">
 
             <ui:define name="content">
-                SALES
+                <section id="body">
+                    <h1><h:outputText value="#{msg.sales_title}"/></h1>
+                    <div class="salesItem">
+                        <h2><h:outputText value="Orval"/></h2>
+                        <p><h:link outcome="beer.xhtml">
+                                <h:graphicImage url="resources/img/orval.png" class="salesImage"/>
+                           </h:link>
+                           Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.
+                            <br /><br />
+                            <span class="salesNewPrice"><h:outputText value="#{msg.sales_newPrice}" /> : 8€</span>
+                        </p>
+                        <p>
+                            <span class="salesMoreInfo"><h:link outcome="beer.xhtml" value="#{msg.cat_moreInfo}" /></span>
+                        </p>
+                    </div>
+                    <div class="salesItem">
+                        <h2><h:outputText value="Orval"/></h2>
+                        <p><h:link outcome="beer.xhtml">
+                                <h:graphicImage url="resources/img/orval.png" class="salesImage"/>
+                           </h:link>
+                           Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.
+                            <br /><br />
+                            <span class="salesNewPrice"><h:outputText value="#{msg.sales_newPrice}" /> : 8€</span>
+                        </p>
+                        <p>
+                            <span class="salesMoreInfo"><h:link outcome="beer.xhtml" value="#{msg.cat_moreInfo}" /></span>
+                        </p>
+                    </div>
+                    <div class="salesItem">
+                        <h2><h:outputText value="Orval"/></h2>
+                        <p><h:link outcome="beer.xhtml">
+                                <h:graphicImage url="resources/img/orval.png" class="salesImage"/>
+                           </h:link>
+                           Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.
+                            <br /><br />
+                            <span class="salesNewPrice"><h:outputText value="#{msg.sales_newPrice}" /> : 8€</span>
+                        </p>
+                        <p>
+                            <span class="salesMoreInfo"><h:link outcome="beer.xhtml" value="#{msg.cat_moreInfo}" /></span>
+                        </p>
+                    </div>
+                </section>
             </ui:define>
 
         </ui:composition>
