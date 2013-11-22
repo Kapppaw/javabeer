@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Recommended;
+import model.Recommended;
 import java.util.List;
 import javax.ejb.Local;
 

@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Ordercart;
+import model.Ordercart;
 import java.util.List;
 import javax.ejb.Local;
 

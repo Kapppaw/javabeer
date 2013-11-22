@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Promo;
+import model.Promo;
 import java.util.List;
 import javax.ejb.Local;
 

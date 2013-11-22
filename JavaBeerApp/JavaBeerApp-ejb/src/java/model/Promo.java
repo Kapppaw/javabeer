@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 
-package data;
+package model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,31 +20,40 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Thibault
  */
 @Entity
-@Table(name = "RECOMMENDED")
+@Table(name = "PROMO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Recommended.findAll", query = "SELECT r FROM Recommended r"),
-    @NamedQuery(name = "Recommended.findById", query = "SELECT r FROM Recommended r WHERE r.id = :id"),
-    @NamedQuery(name = "Recommended.findByDatebegin", query = "SELECT r FROM Recommended r WHERE r.datebegin = :datebegin"),
-    @NamedQuery(name = "Recommended.findByDateend", query = "SELECT r FROM Recommended r WHERE r.dateend = :dateend")})
-public class Recommended implements Serializable {
+    @NamedQuery(name = "Promo.findAll", query = "SELECT p FROM Promo p"),
+    @NamedQuery(name = "Promo.findById", query = "SELECT p FROM Promo p WHERE p.id = :id"),
+    @NamedQuery(name = "Promo.findByReduction", query = "SELECT p FROM Promo p WHERE p.reduction = :reduction"),
+    @NamedQuery(name = "Promo.findByDatebegin", query = "SELECT p FROM Promo p WHERE p.datebegin = :datebegin"),
+    @NamedQuery(name = "Promo.findByDateend", query = "SELECT p FROM Promo p WHERE p.dateend = :dateend"),
+    @NamedQuery(name = "Promo.findByUrlimage", query = "SELECT p FROM Promo p WHERE p.urlimage = :urlimage")})
+public class Promo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "REDUCTION")
+    private int reduction;
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATEBEGIN")
@@ -53,19 +64,25 @@ public class Recommended implements Serializable {
     @Column(name = "DATEEND")
     @Temporal(TemporalType.DATE)
     private Date dateend;
-    @JoinColumn(name = "ITEMID", referencedColumnName = "ID")
+    @Size(max = 255)
+    @Column(name = "URLIMAGE")
+    private String urlimage;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "promoid")
+    private Collection<Translatepromo> translatepromoCollection;
+    @JoinColumn(name = "COUNTRYPROMO", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Item itemid;
+    private Country countrypromo;
 
-    public Recommended() {
+    public Promo() {
     }
 
-    public Recommended(Integer id) {
+    public Promo(Integer id) {
         this.id = id;
     }
 
-    public Recommended(Integer id, Date datebegin, Date dateend) {
+    public Promo(Integer id, int reduction, Date datebegin, Date dateend) {
         this.id = id;
+        this.reduction = reduction;
         this.datebegin = datebegin;
         this.dateend = dateend;
     }
@@ -76,6 +93,14 @@ public class Recommended implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getReduction() {
+        return reduction;
+    }
+
+    public void setReduction(int reduction) {
+        this.reduction = reduction;
     }
 
     public Date getDatebegin() {
@@ -94,12 +119,29 @@ public class Recommended implements Serializable {
         this.dateend = dateend;
     }
 
-    public Item getItemid() {
-        return itemid;
+    public String getUrlimage() {
+        return urlimage;
     }
 
-    public void setItemid(Item itemid) {
-        this.itemid = itemid;
+    public void setUrlimage(String urlimage) {
+        this.urlimage = urlimage;
+    }
+
+    @XmlTransient
+    public Collection<Translatepromo> getTranslatepromoCollection() {
+        return translatepromoCollection;
+    }
+
+    public void setTranslatepromoCollection(Collection<Translatepromo> translatepromoCollection) {
+        this.translatepromoCollection = translatepromoCollection;
+    }
+
+    public Country getCountrypromo() {
+        return countrypromo;
+    }
+
+    public void setCountrypromo(Country countrypromo) {
+        this.countrypromo = countrypromo;
     }
 
     @Override
@@ -112,10 +154,10 @@ public class Recommended implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Recommended)) {
+        if (!(object instanceof Promo)) {
             return false;
         }
-        Recommended other = (Recommended) object;
+        Promo other = (Promo) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -124,7 +166,7 @@ public class Recommended implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Recommended[ id=" + id + " ]";
+        return "data.Promo[ id=" + id + " ]";
     }
     
 }

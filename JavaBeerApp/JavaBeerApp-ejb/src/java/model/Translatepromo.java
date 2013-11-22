@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package data;
+package model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -27,13 +27,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Thibault
  */
 @Entity
-@Table(name = "TRANSLATECOUNTRY")
+@Table(name = "TRANSLATEPROMO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Translatecountry.findAll", query = "SELECT t FROM Translatecountry t"),
-    @NamedQuery(name = "Translatecountry.findById", query = "SELECT t FROM Translatecountry t WHERE t.id = :id"),
-    @NamedQuery(name = "Translatecountry.findByCountryname", query = "SELECT t FROM Translatecountry t WHERE t.countryname = :countryname")})
-public class Translatecountry implements Serializable {
+    @NamedQuery(name = "Translatepromo.findAll", query = "SELECT t FROM Translatepromo t"),
+    @NamedQuery(name = "Translatepromo.findById", query = "SELECT t FROM Translatepromo t WHERE t.id = :id"),
+    @NamedQuery(name = "Translatepromo.findByPromoname", query = "SELECT t FROM Translatepromo t WHERE t.promoname = :promoname")})
+public class Translatepromo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,25 +43,25 @@ public class Translatecountry implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "COUNTRYNAME")
-    private String countryname;
+    @Column(name = "PROMONAME")
+    private String promoname;
+    @JoinColumn(name = "PROMOID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Promo promoid;
     @JoinColumn(name = "LANGUAGEID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Languagetranslate languageid;
-    @JoinColumn(name = "COUNTRYID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Country countryid;
 
-    public Translatecountry() {
+    public Translatepromo() {
     }
 
-    public Translatecountry(Integer id) {
+    public Translatepromo(Integer id) {
         this.id = id;
     }
 
-    public Translatecountry(Integer id, String countryname) {
+    public Translatepromo(Integer id, String promoname) {
         this.id = id;
-        this.countryname = countryname;
+        this.promoname = promoname;
     }
 
     public Integer getId() {
@@ -72,12 +72,20 @@ public class Translatecountry implements Serializable {
         this.id = id;
     }
 
-    public String getCountryname() {
-        return countryname;
+    public String getPromoname() {
+        return promoname;
     }
 
-    public void setCountryname(String countryname) {
-        this.countryname = countryname;
+    public void setPromoname(String promoname) {
+        this.promoname = promoname;
+    }
+
+    public Promo getPromoid() {
+        return promoid;
+    }
+
+    public void setPromoid(Promo promoid) {
+        this.promoid = promoid;
     }
 
     public Languagetranslate getLanguageid() {
@@ -86,14 +94,6 @@ public class Translatecountry implements Serializable {
 
     public void setLanguageid(Languagetranslate languageid) {
         this.languageid = languageid;
-    }
-
-    public Country getCountryid() {
-        return countryid;
-    }
-
-    public void setCountryid(Country countryid) {
-        this.countryid = countryid;
     }
 
     @Override
@@ -106,10 +106,10 @@ public class Translatecountry implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Translatecountry)) {
+        if (!(object instanceof Translatepromo)) {
             return false;
         }
-        Translatecountry other = (Translatecountry) object;
+        Translatepromo other = (Translatepromo) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -118,7 +118,7 @@ public class Translatecountry implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Translatecountry[ id=" + id + " ]";
+        return "data.Translatepromo[ id=" + id + " ]";
     }
     
 }

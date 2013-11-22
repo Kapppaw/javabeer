@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-package data;
+package model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -26,13 +30,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Thibault
  */
 @Entity
-@Table(name = "RANKITEM")
+@Table(name = "COMMENTITEM")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Rankitem.findAll", query = "SELECT r FROM Rankitem r"),
-    @NamedQuery(name = "Rankitem.findById", query = "SELECT r FROM Rankitem r WHERE r.id = :id"),
-    @NamedQuery(name = "Rankitem.findByItemrank", query = "SELECT r FROM Rankitem r WHERE r.itemrank = :itemrank")})
-public class Rankitem implements Serializable {
+    @NamedQuery(name = "Commentitem.findAll", query = "SELECT c FROM Commentitem c"),
+    @NamedQuery(name = "Commentitem.findById", query = "SELECT c FROM Commentitem c WHERE c.id = :id"),
+    @NamedQuery(name = "Commentitem.findByContent", query = "SELECT c FROM Commentitem c WHERE c.content = :content"),
+    @NamedQuery(name = "Commentitem.findByCommentdate", query = "SELECT c FROM Commentitem c WHERE c.commentdate = :commentdate")})
+public class Commentitem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,8 +46,14 @@ public class Rankitem implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ITEMRANK")
-    private int itemrank;
+    @Size(min = 1, max = 1000)
+    @Column(name = "CONTENT")
+    private String content;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "COMMENTDATE")
+    @Temporal(TemporalType.DATE)
+    private Date commentdate;
     @JoinColumn(name = "ITEMID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Item itemid;
@@ -50,16 +61,17 @@ public class Rankitem implements Serializable {
     @ManyToOne(optional = false)
     private Customer customerid;
 
-    public Rankitem() {
+    public Commentitem() {
     }
 
-    public Rankitem(Integer id) {
+    public Commentitem(Integer id) {
         this.id = id;
     }
 
-    public Rankitem(Integer id, int itemrank) {
+    public Commentitem(Integer id, String content, Date commentdate) {
         this.id = id;
-        this.itemrank = itemrank;
+        this.content = content;
+        this.commentdate = commentdate;
     }
 
     public Integer getId() {
@@ -70,12 +82,20 @@ public class Rankitem implements Serializable {
         this.id = id;
     }
 
-    public int getItemrank() {
-        return itemrank;
+    public String getContent() {
+        return content;
     }
 
-    public void setItemrank(int itemrank) {
-        this.itemrank = itemrank;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getCommentdate() {
+        return commentdate;
+    }
+
+    public void setCommentdate(Date commentdate) {
+        this.commentdate = commentdate;
     }
 
     public Item getItemid() {
@@ -104,10 +124,10 @@ public class Rankitem implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Rankitem)) {
+        if (!(object instanceof Commentitem)) {
             return false;
         }
-        Rankitem other = (Rankitem) object;
+        Commentitem other = (Commentitem) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -116,7 +136,7 @@ public class Rankitem implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Rankitem[ id=" + id + " ]";
+        return "data.Commentitem[ id=" + id + " ]";
     }
     
 }

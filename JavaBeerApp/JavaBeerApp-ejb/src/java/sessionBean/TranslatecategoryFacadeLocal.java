@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Translatecategory;
+import model.Translatecategory;
 import java.util.List;
 import javax.ejb.Local;
 

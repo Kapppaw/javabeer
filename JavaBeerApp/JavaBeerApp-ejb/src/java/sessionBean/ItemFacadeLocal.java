@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Item;
+import model.Item;
 import java.util.List;
 import javax.ejb.Local;
 

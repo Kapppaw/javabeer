@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Country;
+import model.Country;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

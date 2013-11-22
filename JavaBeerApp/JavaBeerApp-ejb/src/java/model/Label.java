@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package data;
+package model;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -29,13 +29,14 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Thibault
  */
 @Entity
-@Table(name = "LANGUAGETRANSLATE")
+@Table(name = "LABEL")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Languagetranslate.findAll", query = "SELECT l FROM Languagetranslate l"),
-    @NamedQuery(name = "Languagetranslate.findById", query = "SELECT l FROM Languagetranslate l WHERE l.id = :id"),
-    @NamedQuery(name = "Languagetranslate.findByName", query = "SELECT l FROM Languagetranslate l WHERE l.name = :name")})
-public class Languagetranslate implements Serializable {
+    @NamedQuery(name = "Label.findAll", query = "SELECT l FROM Label l"),
+    @NamedQuery(name = "Label.findById", query = "SELECT l FROM Label l WHERE l.id = :id"),
+    @NamedQuery(name = "Label.findByName", query = "SELECT l FROM Label l WHERE l.name = :name"),
+    @NamedQuery(name = "Label.findByUrlimage", query = "SELECT l FROM Label l WHERE l.urlimage = :urlimage")})
+public class Label implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,21 +48,20 @@ public class Languagetranslate implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "NAME")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "languageid")
-    private Collection<Translatecategory> translatecategoryCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "languageid")
-    private Collection<Translatepromo> translatepromoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "languageid")
-    private Collection<Translatecountry> translatecountryCollection;
+    @Size(max = 255)
+    @Column(name = "URLIMAGE")
+    private String urlimage;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "labelid")
+    private Collection<Item> itemCollection;
 
-    public Languagetranslate() {
+    public Label() {
     }
 
-    public Languagetranslate(Integer id) {
+    public Label(Integer id) {
         this.id = id;
     }
 
-    public Languagetranslate(Integer id, String name) {
+    public Label(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -82,31 +82,21 @@ public class Languagetranslate implements Serializable {
         this.name = name;
     }
 
-    @XmlTransient
-    public Collection<Translatecategory> getTranslatecategoryCollection() {
-        return translatecategoryCollection;
+    public String getUrlimage() {
+        return urlimage;
     }
 
-    public void setTranslatecategoryCollection(Collection<Translatecategory> translatecategoryCollection) {
-        this.translatecategoryCollection = translatecategoryCollection;
-    }
-
-    @XmlTransient
-    public Collection<Translatepromo> getTranslatepromoCollection() {
-        return translatepromoCollection;
-    }
-
-    public void setTranslatepromoCollection(Collection<Translatepromo> translatepromoCollection) {
-        this.translatepromoCollection = translatepromoCollection;
+    public void setUrlimage(String urlimage) {
+        this.urlimage = urlimage;
     }
 
     @XmlTransient
-    public Collection<Translatecountry> getTranslatecountryCollection() {
-        return translatecountryCollection;
+    public Collection<Item> getItemCollection() {
+        return itemCollection;
     }
 
-    public void setTranslatecountryCollection(Collection<Translatecountry> translatecountryCollection) {
-        this.translatecountryCollection = translatecountryCollection;
+    public void setItemCollection(Collection<Item> itemCollection) {
+        this.itemCollection = itemCollection;
     }
 
     @Override
@@ -119,10 +109,10 @@ public class Languagetranslate implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Languagetranslate)) {
+        if (!(object instanceof Label)) {
             return false;
         }
-        Languagetranslate other = (Languagetranslate) object;
+        Label other = (Label) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -131,7 +121,7 @@ public class Languagetranslate implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Languagetranslate[ id=" + id + " ]";
+        return "data.Label[ id=" + id + " ]";
     }
     
 }

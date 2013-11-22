@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Categoryoftheitem;
+import model.Categoryoftheitem;
 import java.util.List;
 import javax.ejb.Local;
 

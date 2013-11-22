@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Newsletter;
+import model.Newsletter;
 import java.util.List;
 import javax.ejb.Local;
 

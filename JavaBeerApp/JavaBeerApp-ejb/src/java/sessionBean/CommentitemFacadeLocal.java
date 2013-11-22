@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Commentitem;
+import model.Commentitem;
 import java.util.List;
 import javax.ejb.Local;
 

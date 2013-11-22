@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package data;
+package model;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -19,7 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -29,41 +28,38 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Thibault
  */
 @Entity
-@Table(name = "LABEL")
+@Table(name = "COUNTRY")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Label.findAll", query = "SELECT l FROM Label l"),
-    @NamedQuery(name = "Label.findById", query = "SELECT l FROM Label l WHERE l.id = :id"),
-    @NamedQuery(name = "Label.findByName", query = "SELECT l FROM Label l WHERE l.name = :name"),
-    @NamedQuery(name = "Label.findByUrlimage", query = "SELECT l FROM Label l WHERE l.urlimage = :urlimage")})
-public class Label implements Serializable {
+    @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c"),
+    @NamedQuery(name = "Country.findById", query = "SELECT c FROM Country c WHERE c.id = :id"),
+    @NamedQuery(name = "Country.findByUrlimage", query = "SELECT c FROM Country c WHERE c.urlimage = :urlimage")})
+public class Country implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "NAME")
-    private String name;
     @Size(max = 255)
     @Column(name = "URLIMAGE")
     private String urlimage;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "labelid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "addresscountry")
+    private Collection<Customer> customerCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "origin")
     private Collection<Item> itemCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countrypromo")
+    private Collection<Promo> promoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "addresscountry")
+    private Collection<Beershop> beershopCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryid")
+    private Collection<Translatecountry> translatecountryCollection;
 
-    public Label() {
+    public Country() {
     }
 
-    public Label(Integer id) {
+    public Country(Integer id) {
         this.id = id;
-    }
-
-    public Label(Integer id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -72,14 +68,6 @@ public class Label implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getUrlimage() {
@@ -91,12 +79,48 @@ public class Label implements Serializable {
     }
 
     @XmlTransient
+    public Collection<Customer> getCustomerCollection() {
+        return customerCollection;
+    }
+
+    public void setCustomerCollection(Collection<Customer> customerCollection) {
+        this.customerCollection = customerCollection;
+    }
+
+    @XmlTransient
     public Collection<Item> getItemCollection() {
         return itemCollection;
     }
 
     public void setItemCollection(Collection<Item> itemCollection) {
         this.itemCollection = itemCollection;
+    }
+
+    @XmlTransient
+    public Collection<Promo> getPromoCollection() {
+        return promoCollection;
+    }
+
+    public void setPromoCollection(Collection<Promo> promoCollection) {
+        this.promoCollection = promoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Beershop> getBeershopCollection() {
+        return beershopCollection;
+    }
+
+    public void setBeershopCollection(Collection<Beershop> beershopCollection) {
+        this.beershopCollection = beershopCollection;
+    }
+
+    @XmlTransient
+    public Collection<Translatecountry> getTranslatecountryCollection() {
+        return translatecountryCollection;
+    }
+
+    public void setTranslatecountryCollection(Collection<Translatecountry> translatecountryCollection) {
+        this.translatecountryCollection = translatecountryCollection;
     }
 
     @Override
@@ -109,10 +133,10 @@ public class Label implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Label)) {
+        if (!(object instanceof Country)) {
             return false;
         }
-        Label other = (Label) object;
+        Country other = (Country) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -121,7 +145,7 @@ public class Label implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Label[ id=" + id + " ]";
+        return "data.Country[ id=" + id + " ]";
     }
     
 }

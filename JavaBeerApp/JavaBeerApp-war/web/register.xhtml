@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./defaultTemplate.xhtml">
+
+            <ui:define name="content">
+                <section id="body">
+                    <article id="login">
+                        <h1><h:outputText value="#{msg.register_registrered}"/></h1>
+                        
+                        <h:form>
+                            <h:outputLabel value="#{msg.register_login}" for="pseudo" />
+                            <h:inputText id="pseudo" value="#{connexion.pseudo}" required="true" requiredMessage="#{msg.register_login_required}">
+                            </h:inputText>
+                            <h:outputLabel value="#{msg.register_password}" for="password" />
+                            <h:inputText id="password" value="#{connexion.password}" required="true" requiredMessage="#{msg.register_password_required}">
+                            </h:inputText>
+                            <h:commandButton value="#{msg.register_connexion}" action="#{connexion.login()}" />
+                        </h:form>
+                        
+                    </article>
+                    <article id="register">
+                        <h1><h:outputText value="#{msg.register_new}"/></h1>
+                        
+                        <h:form>
+                            <h:outputLabel value="#{msg.register_login}" for="pseudo" />
+                            <h:inputText id="pseudo" value="#{register.pseudo}" required="true" requiredMessage="#{msg.register_login_required}" validatorMessage="#{msg.register_login_length}">
+                                <f:validateLength minimum="4" maximum="25" />
+                            </h:inputText>
+                            <h:outputLabel value="#{msg.register_password}" for="password" />
+                            <h:inputText id="password" value="#{register.password}" required="true" requiredMessage="#{msg.register_password_required}" validatorMessage="#{msg.register_password_length}">
+                                <f:validateLength minimum="4" maximum="25" />
+                            </h:inputText>
+                            <h:outputLabel value="#{msg.register_name}" for="name" />
+                            <h:inputText id="name" value="#{register.name}" required="true" requiredMessage="#{msg.register_name_required}" validatorMessage="#{msg.register_password_length}">
+                                <f:validateLength minimum="2" maximum="50" />
+                            </h:inputText>
+                            <h:outputLabel value="#{msg.register_firstName}" for="firstname" />
+                            <h:inputText id="firstname" value="#{register.firstname}" required="true" requiredMessage="#{msg.register_firstname_required}" validatorMessage="#{msg.register_password_length}">
+                                <f:validateLength minimum="2" maximum="25" />
+                            </h:inputText>
+                            <h:outputLabel value="#{msg.register_email}" for="email" />
+                            <h:inputText id="email" value="#{register.email}" required="true" requiredMessage="#{msg.register_email_required}" validatorMessage="#{msg.register_email_length}">
+                                <f:validateLength minimum="2" maximum="25" />
+                            </h:inputText>
+                            <h:outputLabel value="#{msg.register_phone}" for="phone" />
+                            <h:inputText id="phone" value="#{register.phone}" required="true" requiredMessage="#{msg.register_phone_required}" validatorMessage="#{msg.register_phone_length}">
+                                <f:validateLength minimum="2" maximum="25" />
+                            </h:inputText>
+                            <h:commandButton value="#{msg.register_connexion}" action="#{connexion.login()}" />
+                        </h:form>
+                        
+                    </article>
+                    <article id="clear"></article>
+                </section>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

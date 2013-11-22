@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Categoryoftheitem;
+import model.Categoryoftheitem;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

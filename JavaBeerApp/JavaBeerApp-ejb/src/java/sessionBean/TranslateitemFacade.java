@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Translateitem;
+import model.Translateitem;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Newsletter;
+import model.Newsletter;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

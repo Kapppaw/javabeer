@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package data;
+package model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -27,14 +27,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Thibault
  */
 @Entity
-@Table(name = "TRANSLATECATEGORY")
+@Table(name = "TRANSLATECOUNTRY")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Translatecategory.findAll", query = "SELECT t FROM Translatecategory t"),
-    @NamedQuery(name = "Translatecategory.findById", query = "SELECT t FROM Translatecategory t WHERE t.id = :id"),
-    @NamedQuery(name = "Translatecategory.findByColourname", query = "SELECT t FROM Translatecategory t WHERE t.colourname = :colourname"),
-    @NamedQuery(name = "Translatecategory.findByColourdesc", query = "SELECT t FROM Translatecategory t WHERE t.colourdesc = :colourdesc")})
-public class Translatecategory implements Serializable {
+    @NamedQuery(name = "Translatecountry.findAll", query = "SELECT t FROM Translatecountry t"),
+    @NamedQuery(name = "Translatecountry.findById", query = "SELECT t FROM Translatecountry t WHERE t.id = :id"),
+    @NamedQuery(name = "Translatecountry.findByCountryname", query = "SELECT t FROM Translatecountry t WHERE t.countryname = :countryname")})
+public class Translatecountry implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,31 +43,25 @@ public class Translatecategory implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "COLOURNAME")
-    private String colourname;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "COLOURDESC")
-    private String colourdesc;
+    @Column(name = "COUNTRYNAME")
+    private String countryname;
     @JoinColumn(name = "LANGUAGEID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Languagetranslate languageid;
-    @JoinColumn(name = "CATEGORYID", referencedColumnName = "ID")
+    @JoinColumn(name = "COUNTRYID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Category categoryid;
+    private Country countryid;
 
-    public Translatecategory() {
+    public Translatecountry() {
     }
 
-    public Translatecategory(Integer id) {
+    public Translatecountry(Integer id) {
         this.id = id;
     }
 
-    public Translatecategory(Integer id, String colourname, String colourdesc) {
+    public Translatecountry(Integer id, String countryname) {
         this.id = id;
-        this.colourname = colourname;
-        this.colourdesc = colourdesc;
+        this.countryname = countryname;
     }
 
     public Integer getId() {
@@ -79,20 +72,12 @@ public class Translatecategory implements Serializable {
         this.id = id;
     }
 
-    public String getColourname() {
-        return colourname;
+    public String getCountryname() {
+        return countryname;
     }
 
-    public void setColourname(String colourname) {
-        this.colourname = colourname;
-    }
-
-    public String getColourdesc() {
-        return colourdesc;
-    }
-
-    public void setColourdesc(String colourdesc) {
-        this.colourdesc = colourdesc;
+    public void setCountryname(String countryname) {
+        this.countryname = countryname;
     }
 
     public Languagetranslate getLanguageid() {
@@ -103,12 +88,12 @@ public class Translatecategory implements Serializable {
         this.languageid = languageid;
     }
 
-    public Category getCategoryid() {
-        return categoryid;
+    public Country getCountryid() {
+        return countryid;
     }
 
-    public void setCategoryid(Category categoryid) {
-        this.categoryid = categoryid;
+    public void setCountryid(Country countryid) {
+        this.countryid = countryid;
     }
 
     @Override
@@ -121,10 +106,10 @@ public class Translatecategory implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Translatecategory)) {
+        if (!(object instanceof Translatecountry)) {
             return false;
         }
-        Translatecategory other = (Translatecategory) object;
+        Translatecountry other = (Translatecountry) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -133,7 +118,7 @@ public class Translatecategory implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Translatecategory[ id=" + id + " ]";
+        return "data.Translatecountry[ id=" + id + " ]";
     }
     
 }

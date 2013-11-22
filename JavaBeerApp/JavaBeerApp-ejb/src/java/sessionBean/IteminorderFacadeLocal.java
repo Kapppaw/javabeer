@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Iteminorder;
+import model.Iteminorder;
 import java.util.List;
 import javax.ejb.Local;
 

@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package data;
+package model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,10 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -30,14 +27,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Thibault
  */
 @Entity
-@Table(name = "COMMENTITEM")
+@Table(name = "ITEMINORDER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Commentitem.findAll", query = "SELECT c FROM Commentitem c"),
-    @NamedQuery(name = "Commentitem.findById", query = "SELECT c FROM Commentitem c WHERE c.id = :id"),
-    @NamedQuery(name = "Commentitem.findByContent", query = "SELECT c FROM Commentitem c WHERE c.content = :content"),
-    @NamedQuery(name = "Commentitem.findByCommentdate", query = "SELECT c FROM Commentitem c WHERE c.commentdate = :commentdate")})
-public class Commentitem implements Serializable {
+    @NamedQuery(name = "Iteminorder.findAll", query = "SELECT i FROM Iteminorder i"),
+    @NamedQuery(name = "Iteminorder.findById", query = "SELECT i FROM Iteminorder i WHERE i.id = :id"),
+    @NamedQuery(name = "Iteminorder.findByQuantity", query = "SELECT i FROM Iteminorder i WHERE i.quantity = :quantity"),
+    @NamedQuery(name = "Iteminorder.findByPrice", query = "SELECT i FROM Iteminorder i WHERE i.price = :price")})
+public class Iteminorder implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,32 +43,31 @@ public class Commentitem implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 1000)
-    @Column(name = "CONTENT")
-    private String content;
+    @Column(name = "QUANTITY")
+    private int quantity;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Column(name = "COMMENTDATE")
-    @Temporal(TemporalType.DATE)
-    private Date commentdate;
+    @Column(name = "PRICE")
+    private BigDecimal price;
+    @JoinColumn(name = "ORDERCARTID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Ordercart ordercartid;
     @JoinColumn(name = "ITEMID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Item itemid;
-    @JoinColumn(name = "CUSTOMERID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Customer customerid;
 
-    public Commentitem() {
+    public Iteminorder() {
     }
 
-    public Commentitem(Integer id) {
+    public Iteminorder(Integer id) {
         this.id = id;
     }
 
-    public Commentitem(Integer id, String content, Date commentdate) {
+    public Iteminorder(Integer id, int quantity, BigDecimal price) {
         this.id = id;
-        this.content = content;
-        this.commentdate = commentdate;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public Integer getId() {
@@ -82,20 +78,28 @@ public class Commentitem implements Serializable {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public Date getCommentdate() {
-        return commentdate;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setCommentdate(Date commentdate) {
-        this.commentdate = commentdate;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Ordercart getOrdercartid() {
+        return ordercartid;
+    }
+
+    public void setOrdercartid(Ordercart ordercartid) {
+        this.ordercartid = ordercartid;
     }
 
     public Item getItemid() {
@@ -104,14 +108,6 @@ public class Commentitem implements Serializable {
 
     public void setItemid(Item itemid) {
         this.itemid = itemid;
-    }
-
-    public Customer getCustomerid() {
-        return customerid;
-    }
-
-    public void setCustomerid(Customer customerid) {
-        this.customerid = customerid;
     }
 
     @Override
@@ -124,10 +120,10 @@ public class Commentitem implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Commentitem)) {
+        if (!(object instanceof Iteminorder)) {
             return false;
         }
-        Commentitem other = (Commentitem) object;
+        Iteminorder other = (Iteminorder) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -136,7 +132,7 @@ public class Commentitem implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Commentitem[ id=" + id + " ]";
+        return "data.Iteminorder[ id=" + id + " ]";
     }
     
 }

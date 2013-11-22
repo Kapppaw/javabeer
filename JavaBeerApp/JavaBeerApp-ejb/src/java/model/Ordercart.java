@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 
-package data;
+package model;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,23 +20,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Thibault
  */
 @Entity
-@Table(name = "TRANSLATEPROMO")
+@Table(name = "ORDERCART")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Translatepromo.findAll", query = "SELECT t FROM Translatepromo t"),
-    @NamedQuery(name = "Translatepromo.findById", query = "SELECT t FROM Translatepromo t WHERE t.id = :id"),
-    @NamedQuery(name = "Translatepromo.findByPromoname", query = "SELECT t FROM Translatepromo t WHERE t.promoname = :promoname")})
-public class Translatepromo implements Serializable {
+    @NamedQuery(name = "Ordercart.findAll", query = "SELECT o FROM Ordercart o"),
+    @NamedQuery(name = "Ordercart.findById", query = "SELECT o FROM Ordercart o WHERE o.id = :id"),
+    @NamedQuery(name = "Ordercart.findByDateorder", query = "SELECT o FROM Ordercart o WHERE o.dateorder = :dateorder")})
+public class Ordercart implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,26 +48,25 @@ public class Translatepromo implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "PROMONAME")
-    private String promoname;
-    @JoinColumn(name = "PROMOID", referencedColumnName = "ID")
+    @Column(name = "DATEORDER")
+    @Temporal(TemporalType.DATE)
+    private Date dateorder;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ordercartid")
+    private Collection<Iteminorder> iteminorderCollection;
+    @JoinColumn(name = "CUSTOMERID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Promo promoid;
-    @JoinColumn(name = "LANGUAGEID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Languagetranslate languageid;
+    private Customer customerid;
 
-    public Translatepromo() {
+    public Ordercart() {
     }
 
-    public Translatepromo(Integer id) {
+    public Ordercart(Integer id) {
         this.id = id;
     }
 
-    public Translatepromo(Integer id, String promoname) {
+    public Ordercart(Integer id, Date dateorder) {
         this.id = id;
-        this.promoname = promoname;
+        this.dateorder = dateorder;
     }
 
     public Integer getId() {
@@ -72,28 +77,29 @@ public class Translatepromo implements Serializable {
         this.id = id;
     }
 
-    public String getPromoname() {
-        return promoname;
+    public Date getDateorder() {
+        return dateorder;
     }
 
-    public void setPromoname(String promoname) {
-        this.promoname = promoname;
+    public void setDateorder(Date dateorder) {
+        this.dateorder = dateorder;
     }
 
-    public Promo getPromoid() {
-        return promoid;
+    @XmlTransient
+    public Collection<Iteminorder> getIteminorderCollection() {
+        return iteminorderCollection;
     }
 
-    public void setPromoid(Promo promoid) {
-        this.promoid = promoid;
+    public void setIteminorderCollection(Collection<Iteminorder> iteminorderCollection) {
+        this.iteminorderCollection = iteminorderCollection;
     }
 
-    public Languagetranslate getLanguageid() {
-        return languageid;
+    public Customer getCustomerid() {
+        return customerid;
     }
 
-    public void setLanguageid(Languagetranslate languageid) {
-        this.languageid = languageid;
+    public void setCustomerid(Customer customerid) {
+        this.customerid = customerid;
     }
 
     @Override
@@ -106,10 +112,10 @@ public class Translatepromo implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Translatepromo)) {
+        if (!(object instanceof Ordercart)) {
             return false;
         }
-        Translatepromo other = (Translatepromo) object;
+        Ordercart other = (Ordercart) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -118,7 +124,7 @@ public class Translatepromo implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Translatepromo[ id=" + id + " ]";
+        return "data.Ordercart[ id=" + id + " ]";
     }
     
 }

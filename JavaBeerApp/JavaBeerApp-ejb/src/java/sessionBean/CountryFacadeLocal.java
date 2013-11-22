@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Country;
+import model.Country;
 import java.util.List;
 import javax.ejb.Local;
 

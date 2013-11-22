@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package data;
+package model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,14 +29,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Thibault
  */
 @Entity
-@Table(name = "ITEMINORDER")
+@Table(name = "RECOMMENDED")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Iteminorder.findAll", query = "SELECT i FROM Iteminorder i"),
-    @NamedQuery(name = "Iteminorder.findById", query = "SELECT i FROM Iteminorder i WHERE i.id = :id"),
-    @NamedQuery(name = "Iteminorder.findByQuantity", query = "SELECT i FROM Iteminorder i WHERE i.quantity = :quantity"),
-    @NamedQuery(name = "Iteminorder.findByPrice", query = "SELECT i FROM Iteminorder i WHERE i.price = :price")})
-public class Iteminorder implements Serializable {
+    @NamedQuery(name = "Recommended.findAll", query = "SELECT r FROM Recommended r"),
+    @NamedQuery(name = "Recommended.findById", query = "SELECT r FROM Recommended r WHERE r.id = :id"),
+    @NamedQuery(name = "Recommended.findByDatebegin", query = "SELECT r FROM Recommended r WHERE r.datebegin = :datebegin"),
+    @NamedQuery(name = "Recommended.findByDateend", query = "SELECT r FROM Recommended r WHERE r.dateend = :dateend")})
+public class Recommended implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,31 +45,29 @@ public class Iteminorder implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "QUANTITY")
-    private int quantity;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "DATEBEGIN")
+    @Temporal(TemporalType.DATE)
+    private Date datebegin;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "PRICE")
-    private BigDecimal price;
-    @JoinColumn(name = "ORDERCARTID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Ordercart ordercartid;
+    @Column(name = "DATEEND")
+    @Temporal(TemporalType.DATE)
+    private Date dateend;
     @JoinColumn(name = "ITEMID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Item itemid;
 
-    public Iteminorder() {
+    public Recommended() {
     }
 
-    public Iteminorder(Integer id) {
+    public Recommended(Integer id) {
         this.id = id;
     }
 
-    public Iteminorder(Integer id, int quantity, BigDecimal price) {
+    public Recommended(Integer id, Date datebegin, Date dateend) {
         this.id = id;
-        this.quantity = quantity;
-        this.price = price;
+        this.datebegin = datebegin;
+        this.dateend = dateend;
     }
 
     public Integer getId() {
@@ -78,28 +78,20 @@ public class Iteminorder implements Serializable {
         this.id = id;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public Date getDatebegin() {
+        return datebegin;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setDatebegin(Date datebegin) {
+        this.datebegin = datebegin;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public Date getDateend() {
+        return dateend;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Ordercart getOrdercartid() {
-        return ordercartid;
-    }
-
-    public void setOrdercartid(Ordercart ordercartid) {
-        this.ordercartid = ordercartid;
+    public void setDateend(Date dateend) {
+        this.dateend = dateend;
     }
 
     public Item getItemid() {
@@ -120,10 +112,10 @@ public class Iteminorder implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Iteminorder)) {
+        if (!(object instanceof Recommended)) {
             return false;
         }
-        Iteminorder other = (Iteminorder) object;
+        Recommended other = (Recommended) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -132,7 +124,7 @@ public class Iteminorder implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Iteminorder[ id=" + id + " ]";
+        return "data.Recommended[ id=" + id + " ]";
     }
     
 }

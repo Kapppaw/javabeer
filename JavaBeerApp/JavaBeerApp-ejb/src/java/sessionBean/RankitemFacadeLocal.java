@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Rankitem;
+import model.Rankitem;
 import java.util.List;
 import javax.ejb.Local;
 

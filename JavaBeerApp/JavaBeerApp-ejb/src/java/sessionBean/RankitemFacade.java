@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Rankitem;
+import model.Rankitem;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

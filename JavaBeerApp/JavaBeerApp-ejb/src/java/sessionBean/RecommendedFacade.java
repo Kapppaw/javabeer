@@ -6,7 +6,7 @@
 
 package sessionBean;
 
-import data.Recommended;
+import model.Recommended;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

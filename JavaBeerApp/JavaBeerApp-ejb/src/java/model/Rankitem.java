@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package data;
+package model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -13,11 +13,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -25,13 +26,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Thibault
  */
 @Entity
-@Table(name = "TRANSLATEITEM")
+@Table(name = "RANKITEM")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Translateitem.findAll", query = "SELECT t FROM Translateitem t"),
-    @NamedQuery(name = "Translateitem.findById", query = "SELECT t FROM Translateitem t WHERE t.id = :id"),
-    @NamedQuery(name = "Translateitem.findByItemdesc", query = "SELECT t FROM Translateitem t WHERE t.itemdesc = :itemdesc")})
-public class Translateitem implements Serializable {
+    @NamedQuery(name = "Rankitem.findAll", query = "SELECT r FROM Rankitem r"),
+    @NamedQuery(name = "Rankitem.findById", query = "SELECT r FROM Rankitem r WHERE r.id = :id"),
+    @NamedQuery(name = "Rankitem.findByItemrank", query = "SELECT r FROM Rankitem r WHERE r.itemrank = :itemrank")})
+public class Rankitem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,20 +41,25 @@ public class Translateitem implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 1000)
-    @Column(name = "ITEMDESC")
-    private String itemdesc;
+    @Column(name = "ITEMRANK")
+    private int itemrank;
+    @JoinColumn(name = "ITEMID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Item itemid;
+    @JoinColumn(name = "CUSTOMERID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Customer customerid;
 
-    public Translateitem() {
+    public Rankitem() {
     }
 
-    public Translateitem(Integer id) {
+    public Rankitem(Integer id) {
         this.id = id;
     }
 
-    public Translateitem(Integer id, String itemdesc) {
+    public Rankitem(Integer id, int itemrank) {
         this.id = id;
-        this.itemdesc = itemdesc;
+        this.itemrank = itemrank;
     }
 
     public Integer getId() {
@@ -64,12 +70,28 @@ public class Translateitem implements Serializable {
         this.id = id;
     }
 
-    public String getItemdesc() {
-        return itemdesc;
+    public int getItemrank() {
+        return itemrank;
     }
 
-    public void setItemdesc(String itemdesc) {
-        this.itemdesc = itemdesc;
+    public void setItemrank(int itemrank) {
+        this.itemrank = itemrank;
+    }
+
+    public Item getItemid() {
+        return itemid;
+    }
+
+    public void setItemid(Item itemid) {
+        this.itemid = itemid;
+    }
+
+    public Customer getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(Customer customerid) {
+        this.customerid = customerid;
     }
 
     @Override
@@ -82,10 +104,10 @@ public class Translateitem implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Translateitem)) {
+        if (!(object instanceof Rankitem)) {
             return false;
         }
-        Translateitem other = (Translateitem) object;
+        Rankitem other = (Rankitem) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -94,7 +116,7 @@ public class Translateitem implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Translateitem[ id=" + id + " ]";
+        return "data.Rankitem[ id=" + id + " ]";
     }
     
 }
