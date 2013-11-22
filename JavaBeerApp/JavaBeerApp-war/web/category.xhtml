@@ -1,14 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
 
     <body>
 
         <ui:composition template="./defaultTemplate.xhtml">
 
             <ui:define name="content">
-                CATEGORIES
+                <section>
+                    <article id="categories">
+                        <h2>CATEGORIES</h2>
+                        <ul>
+                            <li><a href="#">Brune</a></li>
+                            <li><a href="#">Brune</a></li>
+                            <li><a href="#">Brune</a></li>
+                            <li><a href="#">Brune</a></li>
+                        </ul>
+     
+                    </article>
+                    <article id="items">
+                        <div class="itemCategory">
+                            <h:graphicImage url="resources/img/new.png" class="item-new-img"/>
+                            <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                            <span class="item-title">Orval</span><br />
+                            <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : 330ml</span><br />
+                            <span class="item-more-info"><h:link value="#{msg.cat_moreInfo}" outcome="beer.xhtml" /></span>
+                        </div>
+                        <div class="itemCategory">
+                            <h:graphicImage url="resources/img/new.png" class="item-new-img"/>
+                            <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                            <span class="item-title">Orval</span><br />
+                            <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : 330ml</span><br />
+                            <span class="item-more-info"><h:link value="#{msg.cat_moreInfo}" outcome="beer.xhtml" /></span>
+                        </div>
+                        <div class="itemCategory">
+                            <h:graphicImage url="resources/img/new.png" class="item-new-img"/>
+                            <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                            <span class="item-title">Orval</span><br />
+                            <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : 330ml</span><br />
+                            <span class="item-more-info"><h:link value="#{msg.cat_moreInfo}" outcome="beer.xhtml" /></span>
+                        </div>
+                        <div class="itemCategory">
+                            <h:graphicImage url="resources/img/new.png" class="item-new-img"/>
+                            <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                            <span class="item-title">Orval</span><br />
+                            <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : 330ml</span><br />
+                            <span class="item-more-info"><h:link value="#{msg.cat_moreInfo}" outcome="beer.xhtml" /></span>
+                        </div>
+                        <div class="itemCategory">
+                            <h:graphicImage url="resources/img/new.png" class="item-new-img"/>
+                            <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                            <span class="item-title">Orval</span><br />
+                            <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : 330ml</span><br />
+                            <span class="item-more-info"><h:link value="#{msg.cat_moreInfo}" outcome="beer.xhtml" /></span>
+                        </div>
+                        <div class="itemCategory">
+                            <h:graphicImage url="resources/img/new.png" class="item-new-img"/>
+                            <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                            <span class="item-title">Orval</span><br />
+                            <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : 330ml</span><br />
+                            <span class="item-more-info"><h:link value="#{msg.cat_moreInfo}" outcome="beer.xhtml" /></span>
+                        </div>
+                        <div class="itemCategory">
+                            <h:graphicImage url="resources/img/new.png" class="item-new-img"/>
+                            <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                            <span class="item-title">Orval</span><br />
+                            <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : 330ml</span><br />
+                            <span class="item-more-info"><h:link value="#{msg.cat_moreInfo}" outcome="beer.xhtml" /></span>
+                        </div>
+                        
+                        
+                    </article>
+                    <article id="clear"></article>
+		</section>
             </ui:define>
 
         </ui:composition>

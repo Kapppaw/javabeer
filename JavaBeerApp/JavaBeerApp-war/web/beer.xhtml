@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./defaultTemplate.xhtml">
+
+            <ui:define name="content">
+                <section id="body">
+                    <article id="resume">
+                        <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                        <p>
+                            <h:outputText value="#{msg.item_colour}"/> : Brune<br />
+                            <h:outputText value="#{msg.item_price}"/> : 2€<br />
+                            <h:outputText value="#{msg.item_size}"/> : 330ml<br />
+                            <h:outputText value="#{msg.item_degAlcohol}"/> : 15°<br />
+                            <h:outputText value="#{msg.item_origin}"/> : Croate<br />
+                            <h:outputText value="#{msg.item_label}"/> : Trappist<br />
+                        </p>
+                    </article>
+                    <article id="info-item">
+                        <h1>Orval</h1>
+                        <h2><h:outputText value="#{msg.item_description}"/></h2>
+                        <p>Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.</p>
+                        <h:form>
+                            <h2><h:outputText value="#{msg.item_addCart}" /></h2>
+                            <h:selectOneMenu id="qtyItem">
+                                <f:selectItem itemValue="1" itemLabel="1" />
+                                <f:selectItem itemValue="2" itemLabel="2" />
+                                <f:selectItem itemValue="3" itemLabel="3" />
+                                <f:selectItem itemValue="4" itemLabel="4" />
+                                <f:selectItem itemValue="5" itemLabel="5" />
+                            </h:selectOneMenu>
+                            <h:commandButton value="#{msg.item_add}" action="#" class="button" /><br />
+                        </h:form>
+                    </article>
+                    <article id="clear"></article>
+                </section>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

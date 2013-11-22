@@ -15,6 +15,7 @@
                         <h1><h:outputText value="#{msg.register_registrered}"/></h1>
                         
                         <h:form class="form">
+                            <h2><h:outputText value="#{msg.register_connexionTitle}"/></h2>
                             <h:outputLabel value="#{msg.register_login}" for="pseudo"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
                             <h:inputText id="pseudo" value="#{connexion.pseudo}" required="true" requiredMessage="#{msg.register_login_required}">
                             </h:inputText>
