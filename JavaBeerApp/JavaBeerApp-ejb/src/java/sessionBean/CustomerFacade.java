@@ -6,6 +6,7 @@
 
 package sessionBean;
 
+import java.util.List;
 import model.Customer;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -36,16 +37,22 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
         super(Customer.class);
     }
     
-    public Customer connect(String login,String password)
+    @Override
+    public List<Customer> connect(String login,String password)
     {
         Query query;
         query = em.createNamedQuery("Customer.connect");
         query.setParameter("login", login);
         query.setParameter("password", password);
-        if(query.getSingleResult()!=null)
-            return (Customer) query.getSingleResult();
-        else
-            return null;
+        return query.getResultList();
+    }
+    
+    @Override
+    public List<Customer> findByLogin(String login) {
+        Query query;
+        query = em.createNamedQuery("Customer.findByLogin");
+        query.setParameter("login", login);
+        return query.getResultList();
     }
     
 }

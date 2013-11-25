@@ -16,6 +16,7 @@
                         
                         <h:form class="form">
                             <h2><h:outputText value="#{msg.register_connexionTitle}"/></h2>
+                            <h:outputText value="#{msg.register_error_connect}" class="#{connexion.setBoldErreur()}" />
                             <h:outputLabel value="#{msg.register_login}" for="pseudo"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
                             <h:inputText id="pseudo" value="#{connexion.pseudo}" required="true" requiredMessage="#{msg.register_login_required}">
                             </h:inputText>
@@ -36,6 +37,7 @@
                         
                         <h:form class="form">
                             <h2><h:outputText value="#{msg.register_connexionInfo}"/></h2>
+                            <h:outputText value="#{msg.register_error_register}" class="#{register.setBoldErreur()}" />
                                 <h:outputLabel value="#{msg.register_login}" for="pseudo"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
                                 <h:inputText id="pseudo" value="#{register.pseudo}" required="true" requiredMessage="#{msg.register_login_required}" validatorMessage="#{msg.register_login_validator}">
                                     <f:validateLength minimum="4" maximum="25" />
@@ -80,7 +82,7 @@
                                 <h:outputLabel value="#{msg.register_street}" for="street" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
                                 <h:inputText id="street" value="#{register.adStreet}" required="true" requiredMessage="#{msg.register_street_required}">
                                 </h:inputText>
-                                <span class="messageErrorForm"><h:message for="numStreet" /></span>
+                                <span class="messageErrorForm"><h:message for="street" /></span>
                                 
                                 <h:outputLabel value="#{msg.register_city}" for="city" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
                                 <h:inputText id="city" value="#{register.adCity}" required="true" requiredMessage="#{msg.register_city_required}" validatorMessage="#{msg.register_city_validator}">

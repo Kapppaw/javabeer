@@ -6,6 +6,7 @@
 
 package managedBeans;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
@@ -19,6 +20,8 @@ import sessionBean.CustomerFacadeLocal;
 @ManagedBean
 @ViewScoped
 public class register {
+    @EJB
+    private CustomerFacadeLocal customerFacade1;
     @EJB
     private CustomerFacadeLocal customerFacade;
 
@@ -35,6 +38,8 @@ public class register {
     private String adCountry;
     private String adRegion;
     private String adProvince;
+    
+    private boolean erreur;
     
     
     /**
@@ -226,10 +231,44 @@ public class register {
     }
     
     
-    public String addCustomer() {      
+    public String addCustomer() {     
+        
         Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
-        customerFacade.create(cust);
-        return "index";
+        List<Customer> testCust = customerFacade.findByLogin(this.getPseudo());
+        if(testCust.isEmpty()) {
+            customerFacade.create(cust);
+            return "index";
+        }
+        else {
+            setErreur(true);
+            return "register";
+        }
+    }
+    
+    public String setBoldErreur () {
+        if (isErreur()) {
+            setErreur(false);
+            return "erreur";
+        }
+        else {
+            setErreur(false);
+            return "hide";
+        }
+            
+    }
+
+    /**
+     * @return the erreur
+     */
+    public boolean isErreur() {
+        return erreur;
+    }
+
+    /**
+     * @param erreur the erreur to set
+     */
+    public void setErreur(boolean erreur) {
+        this.erreur = erreur;
     }
     
     

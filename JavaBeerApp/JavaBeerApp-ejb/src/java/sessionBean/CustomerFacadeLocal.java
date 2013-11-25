@@ -31,5 +31,6 @@ public interface CustomerFacadeLocal {
 
     int count();
    
-    Customer connect(String login, String password);
+    List<Customer> connect(String login, String password);
+    List<Customer> findByLogin(String login);
 }

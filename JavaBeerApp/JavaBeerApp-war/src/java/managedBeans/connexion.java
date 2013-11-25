@@ -6,6 +6,7 @@
 
 package managedBeans;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,6 +26,7 @@ public class connexion {
     private String pseudo;
     private String password;
     private boolean connected = false;
+    private boolean erreur = false;
     
     /**
      * Creates a new instance of connexion
@@ -61,13 +63,16 @@ public class connexion {
     }
     
     public String login() {
-        Customer cust = customerFacade.connect(this.getPseudo(), this.getPassword());
-        if (cust !=null) {
+        List<Customer> cust = customerFacade.connect(this.getPseudo(), this.getPassword());
+        if (!cust.isEmpty()) {
             setConnected(true);
             return "index";
         }
-        else
-            return "aboutus";
+        else {
+            setErreur(true);
+            return "register";
+        }
+            
     }
     
     public String logout() {
@@ -98,5 +103,33 @@ public class connexion {
             return "register";
         
     }
+
+    /**
+     * @return the erreur
+     */
+    public boolean isErreur() {
+        return erreur;
+    }
+
+    /**
+     * @param erreur the erreur to set
+     */
+    public void setErreur(boolean erreur) {
+        this.erreur = erreur;
+    }
+    
+    public String setBoldErreur () {
+        if (erreur) {
+            setErreur(false);
+            return "erreur";
+        }
+        else {
+            setErreur(false);
+            return "hide";
+        }
+            
+    }
+
+    
     
 }
