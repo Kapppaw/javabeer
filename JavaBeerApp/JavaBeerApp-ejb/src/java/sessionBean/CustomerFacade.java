@@ -10,6 +10,7 @@ import model.Customer;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -24,29 +25,8 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
     public void create (Customer entity) {
         em.persist(entity);
     }
-    /*
-    @Override
-    public void edit(Customer entity) {
-        em.merge(entity);
-    }
-
-    @Override
-    public void remove(Customer entity) {
-        em.remove(em.merge(entity));
-    }
-
-    public Customer find(Integer id) {
-        return em.find(Customer.class, id);
-    }
-
-    public List<Customer> findAll() {
-        return em.find(Customer.class, this)
-    }
-
-    List<Customer> findRange(int[] range);
-
-    int count();
-    */
+    
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -54,6 +34,18 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
 
     public CustomerFacade() {
         super(Customer.class);
+    }
+    
+    public Customer connect(String login,String password)
+    {
+        Query query;
+        query = em.createNamedQuery("Customer.connect");
+        query.setParameter("login", login);
+        query.setParameter("password", password);
+        if(query.getSingleResult()!=null)
+            return (Customer) query.getSingleResult();
+        else
+            return null;
     }
     
 }

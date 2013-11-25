@@ -31,4 +31,5 @@ public interface CustomerFacadeLocal {
 
     int count();
    
+    Customer connect(String login, String password);
 }

@@ -6,8 +6,11 @@
 
 package managedBeans;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import model.Customer;
+import sessionBean.CustomerFacadeLocal;
 
 /**
  *
@@ -16,6 +19,8 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class connexion {
+    @EJB
+    private CustomerFacadeLocal customerFacade;
 
     private String pseudo;
     private String password;
@@ -56,12 +61,13 @@ public class connexion {
     }
     
     public String login() {
-        if (true) {
+        Customer cust = customerFacade.connect(this.getPseudo(), this.getPassword());
+        if (cust !=null) {
             setConnected(true);
             return "index";
         }
         else
-            return "error";
+            return "aboutus";
     }
     
     public String logout() {
