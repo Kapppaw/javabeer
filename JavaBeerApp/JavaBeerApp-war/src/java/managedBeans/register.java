@@ -6,8 +6,11 @@
 
 package managedBeans;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
+import model.Customer;
+import sessionBean.CustomerFacadeLocal;
 
 /**
  *
@@ -16,6 +19,8 @@ import javax.faces.view.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class register {
+    @EJB
+    private CustomerFacadeLocal customerFacade;
 
     private String pseudo;
     private String password;
@@ -219,5 +224,14 @@ public class register {
     public void setAdProvince(String adProvince) {
         this.adProvince = adProvince;
     }
+    
+    
+    public String addCustomer() {      
+        Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
+        customerFacade.create(cust);
+        return "index";
+    }
+    
+    
     
 }

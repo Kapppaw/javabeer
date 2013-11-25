@@ -21,6 +21,33 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
     private EntityManager em;
 
     @Override
+    public void create (Customer entity) {
+        em.persist(entity);
+    }
+    /*
+    @Override
+    public void edit(Customer entity) {
+        em.merge(entity);
+    }
+
+    @Override
+    public void remove(Customer entity) {
+        em.remove(em.merge(entity));
+    }
+
+    public Customer find(Integer id) {
+        return em.find(Customer.class, id);
+    }
+
+    public List<Customer> findAll() {
+        return em.find(Customer.class, this)
+    }
+
+    List<Customer> findRange(int[] range);
+
+    int count();
+    */
+    @Override
     protected EntityManager getEntityManager() {
         return em;
     }

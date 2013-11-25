@@ -77,6 +77,11 @@
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="numStreet" /></span>
                                 
+                                <h:outputLabel value="#{msg.register_street}" for="street" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
+                                <h:inputText id="street" value="#{register.adStreet}" required="true" requiredMessage="#{msg.register_street_required}">
+                                </h:inputText>
+                                <span class="messageErrorForm"><h:message for="numStreet" /></span>
+                                
                                 <h:outputLabel value="#{msg.register_city}" for="city" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
                                 <h:inputText id="city" value="#{register.adCity}" required="true" requiredMessage="#{msg.register_city_required}" validatorMessage="#{msg.register_city_validator}">
                                     <f:validateLength minimum="2"/>
@@ -90,7 +95,7 @@
                                 <span class="messageErrorForm"><h:message for="zipcode" /></span>
                                 
                                 <h:outputLabel value="#{msg.register_country}" for="country" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:selectOneMenu id="country">
+                                <h:selectOneMenu id="country" value="#{register.adCountry}">
                                     <f:selectItem itemValue="1" itemLabel="France" />
                                     <f:selectItem itemValue="2" itemLabel="Belgique" />
                                     <f:selectItem itemValue="3" itemLabel="Iraq" />
@@ -105,7 +110,7 @@
                                 </h:inputText>
                                 
                             <br />
-                            <h:commandButton value="#{msg.register_register}" action="#{connexion.login()}" class="button"/><br />
+                            <h:commandButton value="#{msg.register_register}" action="#{register.addCustomer}" class="button"/><br />
                             <span id="qte"><h:outputText value="*"/></span> <h:outputText value=" #{msg.register_required}" class="required"/>
                         </h:form>
                         

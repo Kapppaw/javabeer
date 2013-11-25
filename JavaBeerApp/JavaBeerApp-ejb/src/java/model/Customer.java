@@ -142,6 +142,21 @@ public class Customer implements Serializable {
         this.addresszipcode = addresszipcode;
     }
 
+    
+    public Customer(String login, String password, String name, String firstname, String email, String phone, int addressnumber, String addressstreet, String addresscity, int addresszipcode, int addcountry) {       
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.firstname = firstname;
+        this.email = email;
+        this.phone = phone;
+        this.addressnumber = addressnumber;
+        this.addressstreet = addressstreet;
+        this.addresscity = addresscity;
+        this.addresszipcode = addresszipcode;
+        this.addresscountry = new Country(addcountry);
+    }
+
     public Integer getId() {
         return id;
     }
