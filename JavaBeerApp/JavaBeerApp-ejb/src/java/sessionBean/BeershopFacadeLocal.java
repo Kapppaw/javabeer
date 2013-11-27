@@ -31,4 +31,6 @@ public interface BeershopFacadeLocal {
 
     int count();
     
+    
+    
 }

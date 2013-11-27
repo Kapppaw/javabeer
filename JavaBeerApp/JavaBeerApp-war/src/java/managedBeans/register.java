@@ -11,7 +11,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import model.Customer;
+import model.Translatecountry;
 import sessionBean.CustomerFacadeLocal;
+import sessionBean.TranslatecountryFacadeLocal;
 
 /**
  *
@@ -21,7 +23,7 @@ import sessionBean.CustomerFacadeLocal;
 @ViewScoped
 public class register {
     @EJB
-    private CustomerFacadeLocal customerFacade1;
+    private TranslatecountryFacadeLocal translatecountryFacade;
     @EJB
     private CustomerFacadeLocal customerFacade;
 
@@ -256,6 +258,7 @@ public class register {
         }
             
     }
+    
 
     /**
      * @return the erreur

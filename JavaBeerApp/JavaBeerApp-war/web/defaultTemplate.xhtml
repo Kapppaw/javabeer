@@ -100,17 +100,18 @@
                 <div id="contact">
                     <h1><h:outputText value="#{msg.f_contactUs}"/></h1>
                     <p id="contact-us">
-                        <h:outputText value="#{msg.f_phone}"/> 0032.81.12.34.56<br />
-                        <h:outputText value="#{msg.f_fax}"/> 0032.81.98.76.54<br />
+                        <h:outputText value="#{defaultTemplate.setParam()}" />
+                        <h:outputText value="#{msg.f_phone}"/><h:outputText value=" #{defaultTemplate.phone}" /><br />
                         <h:outputText value="#{msg.f_mail}"/>
-                        <a class="mail" href="mailto:info@javabeer.com">info@javabeer.com</a>
+                        <a class="mail" href="mailto:#{defaultTemplate.mail}"><h:outputText value="#{defaultTemplate.mail}" /></a>
                     </p>
                     <p>
                         <h:outputLink value="http://maps.google.com">
                             <h:graphicImage url="resources/img/map.png" class="img-float" title="Map" />
                         </h:outputLink>
-                        20 rue Joseph Calozet<br />
-                        5000 Namur<br />
+                        <h:outputText value="#{defaultTemplate.numStreet}" /> <h:outputText value=" #{defaultTemplate.street}" /><br />
+                        <h:outputText value="#{defaultTemplate.zipCode}" /> <h:outputText value=" #{defaultTemplate.city}" /><br />
+                        <h:outputText value="#{defaultTemplate.country.id}" />
                         Belgium
                     </p>
                 </div>

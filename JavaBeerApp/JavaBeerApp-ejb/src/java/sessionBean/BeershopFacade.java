@@ -6,9 +6,11 @@
 
 package sessionBean;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import model.Beershop;
 
 /**
@@ -29,4 +31,12 @@ public class BeershopFacade extends AbstractFacade<Beershop> implements Beershop
         super(Beershop.class);
     }
     
+    
+    public Beershop find(Integer id) {
+        Query query;
+        query = em.createNamedQuery("Beershop.findById");
+        query.setParameter("id", id);
+        return (Beershop)query.getSingleResult();
+    }
+
 }

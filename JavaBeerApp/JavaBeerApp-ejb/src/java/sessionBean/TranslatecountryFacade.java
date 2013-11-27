@@ -6,10 +6,12 @@
 
 package sessionBean;
 
+import java.util.List;
 import model.Translatecountry;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +31,5 @@ public class TranslatecountryFacade extends AbstractFacade<Translatecountry> imp
         super(Translatecountry.class);
     }
     
+
 }

@@ -30,5 +30,6 @@ public interface TranslatecountryFacadeLocal {
     List<Translatecountry> findRange(int[] range);
 
     int count();
+
     
 }
