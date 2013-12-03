@@ -8,6 +8,7 @@ package sessionBean;
 
 import model.Translatecategory;
 import java.util.List;
+import java.util.Locale;
 import javax.ejb.Local;
 
 /**
@@ -30,5 +31,7 @@ public interface TranslatecategoryFacadeLocal {
     List<Translatecategory> findRange(int[] range);
 
     int count();
+    
+    List<Translatecategory> findByLanguage(String lang);
     
 }

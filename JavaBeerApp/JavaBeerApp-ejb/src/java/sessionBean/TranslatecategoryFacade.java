@@ -6,10 +6,13 @@
 
 package sessionBean;
 
+import java.util.List;
+import java.util.Locale;
 import model.Translatecategory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,14 @@ public class TranslatecategoryFacade extends AbstractFacade<Translatecategory> i
 
     public TranslatecategoryFacade() {
         super(Translatecategory.class);
+    }
+    
+    @Override
+    public List<Translatecategory> findByLanguage(String lang) {
+        Query query;
+        query = em.createNamedQuery("Translatecategory.findByLanguage");
+        query.setParameter("lang", lang);
+        return query.getResultList();
     }
     
 }

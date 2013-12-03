@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "TRANSLATECATEGORY")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "Translatecategory.findByLanguage", query = "SELECT t FROM Translatecategory t, Languagetranslate l WHERE t.languageid.id = l.id AND l.name = :lang"),
     @NamedQuery(name = "Translatecategory.findAll", query = "SELECT t FROM Translatecategory t"),
     @NamedQuery(name = "Translatecategory.findById", query = "SELECT t FROM Translatecategory t WHERE t.id = :id"),
     @NamedQuery(name = "Translatecategory.findByColourname", query = "SELECT t FROM Translatecategory t WHERE t.colourname = :colourname"),

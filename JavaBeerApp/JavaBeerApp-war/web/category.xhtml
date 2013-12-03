@@ -12,12 +12,10 @@
                 <section>
                     <article id="categories">
                         <h2>CATEGORIES</h2>
-                        <ul>
-                            <li><a href="#">Brune</a></li>
-                            <li><a href="#">Brune</a></li>
-                            <li><a href="#">Brune</a></li>
-                            <li><a href="#">Brune</a></li>
-                        </ul>
+                        <ul><ui:repeat value="#{category.categories}" var="cat">
+                                <li><h:outputText value="#{cat.colourname}" /></li>
+                               
+                            </ui:repeat></ul>
      
                     </article>
                     <article id="items">
