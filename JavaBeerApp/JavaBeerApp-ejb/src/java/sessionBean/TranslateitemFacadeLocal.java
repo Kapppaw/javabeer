@@ -37,4 +37,6 @@ public interface TranslateitemFacadeLocal {
     
     List<Translateitem> searchItem(String name, String lang);
     
+    List<Translateitem> findCurrentPromoLang(String lang);
+    
 }

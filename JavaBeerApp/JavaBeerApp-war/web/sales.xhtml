@@ -11,45 +11,23 @@
             <ui:define name="content">
                 <section id="body">
                     <h1><h:outputText value="#{msg.sales_title}"/></h1>
+                    <ui:repeat value="#{sales.items}" var="item">
                     <div class="salesItem">
-                        <h2><h:outputText value="Orval"/></h2>
-                        <p><h:link outcome="beer.xhtml">
+                        <h2><h:outputText value="#{item.itemid.name}"/></h2>
+                        <p>
                                 <h:graphicImage url="resources/img/orval.png" class="salesImage"/>
-                           </h:link>
-                           Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.
+                            <h:outputText value="#{item.itemdesc}"/>
                             <br /><br />
-                            <span class="salesNewPrice"><h:outputText value="#{msg.sales_newPrice}" /> : 8€</span>
+                            <span class="salesNewPrice"><h:outputText value="#{msg.sales_newPrice}" /> : <h:outputText value="#{item.itemid.price * 0.85}"/>€</span>
                         </p>
                         <p>
-                            <span class="salesMoreInfo"><h:link outcome="beer.xhtml" value="#{msg.cat_moreInfo}" /></span>
+                            <h:form>
+                                    <h:commandLink value="#{msg.cat_moreInfo}" action="#{beer.linkBeer(last.itemid.id)}" class="newsMoreInfo">
+                                        </h:commandLink>
+                                    </h:form>
                         </p>
                     </div>
-                    <div class="salesItem">
-                        <h2><h:outputText value="Orval"/></h2>
-                        <p><h:link outcome="beer.xhtml">
-                                <h:graphicImage url="resources/img/orval.png" class="salesImage"/>
-                           </h:link>
-                           Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.
-                            <br /><br />
-                            <span class="salesNewPrice"><h:outputText value="#{msg.sales_newPrice}" /> : 8€</span>
-                        </p>
-                        <p>
-                            <span class="salesMoreInfo"><h:link outcome="beer.xhtml" value="#{msg.cat_moreInfo}" /></span>
-                        </p>
-                    </div>
-                    <div class="salesItem">
-                        <h2><h:outputText value="Orval"/></h2>
-                        <p><h:link outcome="beer.xhtml">
-                                <h:graphicImage url="resources/img/orval.png" class="salesImage"/>
-                           </h:link>
-                           Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.
-                            <br /><br />
-                            <span class="salesNewPrice"><h:outputText value="#{msg.sales_newPrice}" /> : 8€</span>
-                        </p>
-                        <p>
-                            <span class="salesMoreInfo"><h:link outcome="beer.xhtml" value="#{msg.cat_moreInfo}" /></span>
-                        </p>
-                    </div>
+                    </ui:repeat>
                 </section>
             </ui:define>
 

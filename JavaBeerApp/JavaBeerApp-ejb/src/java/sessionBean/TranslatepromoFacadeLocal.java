@@ -31,4 +31,6 @@ public interface TranslatepromoFacadeLocal {
 
     int count();
     
+    List<Translatepromo> findCurrentLang(String lang);
+    
 }
