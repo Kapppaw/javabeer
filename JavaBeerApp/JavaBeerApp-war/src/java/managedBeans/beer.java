@@ -7,17 +7,15 @@
 package managedBeans;
 
 import java.util.List;
-import java.util.Locale.Category;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.SessionScoped;
 import model.Translatecategory;
+import model.Translatecountry;
 import model.Translateitem;
 import sessionBean.TranslatecategoryFacadeLocal;
+import sessionBean.TranslatecountryFacadeLocal;
 import sessionBean.TranslateitemFacadeLocal;
 
 /**
@@ -25,8 +23,10 @@ import sessionBean.TranslateitemFacadeLocal;
  * @author Thibault
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class beer {
+    @EJB
+    private TranslatecountryFacadeLocal translatecountryFacade;
     @EJB
     private TranslatecategoryFacadeLocal translatecategoryFacade;
     @EJB
@@ -34,6 +34,8 @@ public class beer {
 
     @ManagedProperty("#{language}")
     private language lang;
+    
+    private int beerId;
     
     /**
      * Creates a new instance of beer
@@ -43,15 +45,28 @@ public class beer {
     
     private Translateitem beer;
     private List<Translatecategory> listCat;
+    private Translatecountry origin;
     
-    public List<Translatecategory> aMoi () {
-        setListCat(translatecategoryFacade.findByIdLanguage(lang.getLocale().getLanguage(), Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("beerid"))));
+    
+    public List<Translatecategory> listCategories () {
+        setListCat(translatecategoryFacade.findByIdLanguage(lang.getLocale().getLanguage(), beerId));
         return listCat;
     }
     
+    public Translatecountry origine () {
+        setOrigin(translatecountryFacade.findByIdLang(beerId, lang.getLocale().getLanguage()));
+        return getOrigin();
+    }
+    
+    
+    
     public Translateitem getBeer() {
-        String beerId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("beerid");
-        return translateitemFacade.findOne(Integer.parseInt(beerId), lang.getLocale().getLanguage());
+        return translateitemFacade.findOne(beerId, lang.getLocale().getLanguage());
+    }
+    
+    public String linkBeer (int id) {
+        setBeerId(id);
+        return "beer";
     }
     
     /**
@@ -79,7 +94,36 @@ public class beer {
      * @param listCat the listCat to set
      */
     public void setListCat(List<Translatecategory> listCat) {
-        this.listCat = translatecategoryFacade.findByIdLanguage(lang.getLocale().getLanguage(), Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("beerid")));
+        this.listCat = translatecategoryFacade.findByIdLanguage(lang.getLocale().getLanguage(), beerId);
+    }
+
+    /**
+     * @return the beerId
+     */
+    public int getBeerId() {
+        return beerId;
+    }
+
+    /**
+     * @param beerId the beerId to set
+     */
+    public void setBeerId(int beerId) {
+        this.beerId = beerId;
+    }
+
+
+    /**
+     * @param origin the origin to set
+     */
+    public void setOrigin(Translatecountry origin) {
+        this.origin = translatecountryFacade.findByIdLang(beerId, lang.getLocale().getLanguage());
+    }
+
+    /**
+     * @return the origin
+     */
+    public Translatecountry getOrigin() {
+        return origin;
     }
     
 }

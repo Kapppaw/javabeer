@@ -31,5 +31,30 @@ public class TranslatecountryFacade extends AbstractFacade<Translatecountry> imp
         super(Translatecountry.class);
     }
     
+    @Override
+    public Translatecountry findByIdLang (int id, String lang) {
+        Query query;
+        query = em.createNamedQuery("Translatecountry.findByIdLang");
+        query.setParameter("lang", lang);
+        query.setParameter("id", id);
+        return (Translatecountry)query.getSingleResult();
+    }
 
+    @Override
+    public Translatecountry findByParamIdLang (int id, String lang) {
+        Query query;
+        query = em.createNamedQuery("Translatecountry.findByIdLang");
+        query.setParameter("lang", lang);
+        query.setParameter("id", id);
+        return (Translatecountry)query.getSingleResult();
+    }
+    
+    @Override
+    public List<Translatecountry> findAllByLang (String lang) {
+        Query query;
+        query = em.createNamedQuery("Translatecountry.findAllByLang");
+        query.setParameter("lang", lang);
+        return query.getResultList();
+    }
+    
 }

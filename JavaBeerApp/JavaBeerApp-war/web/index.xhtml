@@ -26,10 +26,11 @@
                         <li class="item">
                             <p>
                                 <h:graphicImage url="resources/img/new.png" class="item-new-img"/>
-                                <h:link  outcome="beer.xhtml">
-                                    <h:graphicImage url="resources/img/orval.png" class="item-image"/>
-                                </h:link>
-                                <span class="item-title"><h:outputText value="#{item.itemid.name}" /></span><br />
+                                <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                                <h:form>
+                                    <span class="item-title"><h:commandLink value="#{item.itemid.name}" action="#{beer.linkBeer(item.itemid.id)}" class="item-title">
+                                        </h:commandLink></span><br />
+                                    </h:form>
                                 <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : <h:outputText value="#{item.itemid.capacity}" />ml</span><br />
                                 <span class="item-price"><h:outputText value="#{item.itemid.price}" /> €</span><br />
 				<span class="item-sale-hidden"><h:outputText value="#{msg.index_promo}"/> : <span class="item-sale-price">8 €</span></span>
@@ -42,13 +43,15 @@
                     <ul class="list-item"><ui:repeat value="#{index.allItemBestSales}" var="itemBestSale">
                         <li class="item">
                             <p>
-                                <h:link  outcome="beer.xhtml">
-                                    <h:graphicImage url="resources/img/orval.png" class="item-image"/>
-                                </h:link>
-                                <span class="item-title"><h:outputText value="#{itemBestSale.name}" /></span><br />
+                                <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                                <h:form>
+                                    <span class="item-title"><h:commandLink value="#{itemBestSale.name}" action="#{beer.linkBeer(itemBestSale.id)}" class="item-title">
+                                        </h:commandLink></span><br />
+                                    </h:form>
                                 <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : <h:outputText value="#{itemBestSale.capacity}" />ml</span><br />
 				<span class="item-price"><h:outputText value="#{itemBestSale.price}" /> €</span><br />
 				<span class="item-sale-hidden"><h:outputText value="#{msg.index_promo}"/> : <span class="item-sale-price">8 €</span></span>
+                                
                             </p>
                         </li>
                     </ui:repeat></ul>

@@ -31,6 +31,6 @@ public interface BeershopFacadeLocal {
 
     int count();
     
-    
+    Beershop findByIdLang(int id, String lang);
     
 }

@@ -9,9 +9,11 @@ package managedBeans;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.view.ViewScoped;
 import model.Customer;
 import model.Translatecountry;
+import model.Translateitem;
 import sessionBean.CustomerFacadeLocal;
 import sessionBean.TranslatecountryFacadeLocal;
 
@@ -27,6 +29,10 @@ public class register {
     @EJB
     private CustomerFacadeLocal customerFacade;
 
+    @ManagedProperty("#{language}")
+    private language lang;
+    
+    
     private String pseudo;
     private String password;
     private String name;
@@ -42,6 +48,12 @@ public class register {
     private String adProvince;
     
     private boolean erreur;
+    
+    public List<Translatecountry> getCountries () {
+        
+        return translatecountryFacade.findAllByLang(getLang().getLocale().getLanguage());
+        
+    }
     
     
     /**
@@ -272,6 +284,20 @@ public class register {
      */
     public void setErreur(boolean erreur) {
         this.erreur = erreur;
+    }
+
+    /**
+     * @return the lang
+     */
+    public language getLang() {
+        return lang;
+    }
+
+    /**
+     * @param lang the lang to set
+     */
+    public void setLang(language lang) {
+        this.lang = lang;
     }
     
     

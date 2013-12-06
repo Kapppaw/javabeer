@@ -22,8 +22,8 @@
                 <h:link outcome="index.xhtml"> <div id="logo"></div></h:link>
                 <div id="search">
                     <h:form>
-                        <p><h:inputText size="65" id="searchInput" />
-                        <h:commandButton action="#" image="resources/img/loupe.png" />
+                        <p><h:inputText size="65" id="searchInput" value="#{research.search}" required="true" />
+                            <h:commandButton action="#{research.searchItem()}" image="resources/img/loupe.png" />
                         </p>
                     </h:form>
                 </div>
@@ -100,19 +100,17 @@
                 <div id="contact">
                     <h1><h:outputText value="#{msg.f_contactUs}"/></h1>
                     <p id="contact-us">
-                        <h:outputText value="#{defaultTemplate.setParam()}" />
-                        <h:outputText value="#{msg.f_phone}"/><h:outputText value=" #{defaultTemplate.phone}" /><br />
+                        <h:outputText value="#{msg.f_phone}"/><h:outputText value=" #{defaultTemplate.beershopParam().phone}" /><br />
                         <h:outputText value="#{msg.f_mail}"/>
-                        <a class="mail" href="mailto:#{defaultTemplate.mail}"><h:outputText value="#{defaultTemplate.mail}" /></a>
+                        <a class="mail" href="mailto:#{defaultTemplate.beershopParam().email}"><h:outputText value="#{defaultTemplate.beershopParam().email}" /></a>
                     </p>
                     <p>
                         <h:outputLink value="http://maps.google.com">
                             <h:graphicImage url="resources/img/map.png" class="img-float" title="Map" />
                         </h:outputLink>
-                        <h:outputText value="#{defaultTemplate.numStreet}" /> <h:outputText value=" #{defaultTemplate.street}" /><br />
-                        <h:outputText value="#{defaultTemplate.zipCode}" /> <h:outputText value=" #{defaultTemplate.city}" /><br />
-                        <h:outputText value="#{defaultTemplate.country.id}" />
-                        Belgium
+                        <h:outputText value="#{defaultTemplate.beershopParam().addressnumber}" /> <h:outputText value=" #{defaultTemplate.beershopParam().addressstreet}" /><br />
+                        <h:outputText value="#{defaultTemplate.beershopParam().addresszipcode}" /> <h:outputText value=" #{defaultTemplate.beershopParam().addresscity}" /><br />
+                        <h:outputText value="#{defaultTemplate.origine().countryname}" />
                     </p>
                 </div>
                 <div id="follow">

@@ -33,4 +33,8 @@ public interface TranslateitemFacadeLocal {
     
     Translateitem findOne(int id, String lang);
     
+    List<Translateitem> findLast(String lang);
+    
+    List<Translateitem> searchItem(String name, String lang);
+    
 }

@@ -44,4 +44,6 @@ public class ItemFacade extends AbstractFacade<Item> implements ItemFacadeLocal 
         query = em.createNamedQuery("Item.findBestSales");
         return query.getResultList();
     }
+    
+    
 }

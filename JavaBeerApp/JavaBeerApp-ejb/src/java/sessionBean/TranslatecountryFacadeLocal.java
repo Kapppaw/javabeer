@@ -31,5 +31,9 @@ public interface TranslatecountryFacadeLocal {
 
     int count();
 
+    Translatecountry findByIdLang(int id, String lang);
     
+    Translatecountry findByParamIdLang (int id, String lang);
+    
+    List<Translatecountry> findAllByLang (String lang);
 }

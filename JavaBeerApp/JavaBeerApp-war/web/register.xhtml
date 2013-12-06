@@ -97,11 +97,11 @@
                                 <span class="messageErrorForm"><h:message for="zipcode" /></span>
                                 
                                 <h:outputLabel value="#{msg.register_country}" for="country" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
+                                
+                                
                                 <h:selectOneMenu id="country" value="#{register.adCountry}">
-                                    <f:selectItem itemValue="1" itemLabel="France" />
-                                    <f:selectItem itemValue="2" itemLabel="Belgique" />
-                                    <f:selectItem itemValue="3" itemLabel="Iraq" />
-                                </h:selectOneMenu>
+                                    <f:selectItems value="#{register.countries}" var="currentCountry" itemValue="#{currentCountry.id}" itemLabel="#{currentCountry.countryname}"/>
+                                 </h:selectOneMenu>
                                 
                                 <h:outputLabel value="#{msg.register_region}" for="region" />
                                 <h:inputText id="region" value="#{register.adRegion}">

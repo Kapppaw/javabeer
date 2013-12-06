@@ -34,12 +34,17 @@ public class category {
     private language lang;
     
     private List<Item> listItems;
+    
+    
+
 
     /**
      * Creates a new instance of category
      */
     public category() {
     }
+    
+   
     
     public List<Translatecategory> getCategories () {
         
@@ -87,5 +92,7 @@ public class category {
     public void setListItems(List<Item> listItems) {
         this.listItems = listItems;
     }
+
+  
     
 }

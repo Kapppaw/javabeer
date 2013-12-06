@@ -31,7 +31,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Translatecountry.findAll", query = "SELECT t FROM Translatecountry t"),
-    @NamedQuery(name = "Translatecountry.findById", query = "SELECT t FROM Translatecountry t WHERE t.id = :id"),
+    @NamedQuery(name = "Translatecountry.findAllByLang", query = "SELECT t FROM Translatecountry t, Country c, Languagetranslate l WHERE t.countryid.id = c.id AND l.id = t.languageid.id AND l.name = :lang"),
+    @NamedQuery(name = "Translatecountry.findByIdLang", query = "SELECT t FROM Translatecountry t, Country c, Item i, Languagetranslate lt WHERE i.id = :id AND t.countryid.id = c.id AND i.origin.id = c.id AND lt.id = t.languageid.id AND lt.name = :lang"),
+    @NamedQuery(name = "Translatecountry.findByParamIdLang", query = "SELECT t FROM Translatecountry t, Country c, Beershop b, Languagetranslate lt WHERE b.id = :id AND t.countryid.id = c.id AND b.addresscountry.id = c.id AND lt.id = t.languageid.id AND lt.name = :lang"),
     @NamedQuery(name = "Translatecountry.findByCountryname", query = "SELECT t FROM Translatecountry t WHERE t.countryname = :countryname")})
 public class Translatecountry implements Serializable {
     private static final long serialVersionUID = 1L;

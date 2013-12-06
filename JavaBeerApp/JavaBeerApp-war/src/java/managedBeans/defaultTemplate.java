@@ -8,10 +8,13 @@ package managedBeans;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import model.Beershop;
 import model.Country;
+import model.Translatecountry;
 import sessionBean.BeershopFacadeLocal;
+import sessionBean.TranslatecountryFacadeLocal;
 
 /**
  *
@@ -21,15 +24,19 @@ import sessionBean.BeershopFacadeLocal;
 @SessionScoped
 public class defaultTemplate {
     @EJB
+    private TranslatecountryFacadeLocal translatecountryFacade;
+    @EJB
     private BeershopFacadeLocal beershopFacade;
     
-    private String phone;
-    private String mail;
-    private String street;
-    private int numStreet;
-    private int zipCode;
-    private String city;
-    private Country country;
+    @ManagedProperty("#{language}")
+    private language lang;
+    
+    private Beershop param;
+    
+    private Translatecountry origin;
+    
+    
+    
     
     
     /**
@@ -37,115 +44,64 @@ public class defaultTemplate {
      */
     public defaultTemplate() {
     }
+
     
-    public void setParam () {
-        Beershop param = beershopFacade.find(1);
-        setStreet(param.getAddressstreet());
-        setPhone(param.getPhone());
-        setMail(param.getEmail());
-        setNumStreet(param.getAddressnumber());
-        setZipCode(param.getAddresszipcode());
-        setCity(param.getAddresscity());
-        setCountry(param.getAddresscountry());
+    
+    
+    public Translatecountry origine () {
+        setOrigin(translatecountryFacade.findByParamIdLang(1, lang.getLocale().getLanguage()));
+        return getOrigin();
+    }
+    
+    public Beershop beershopParam () {
+        setParam(beershopFacade.findByIdLang(1, getLang().getLocale().getLanguage()));
+        return param;
+    }
+
+    
+    /**
+     * @return the param
+     */
+    public Beershop getParam() {
+        return param;
     }
 
     /**
-     * @return the street
+     * @param param the param to set
      */
-    public String getStreet() {
-        return street;
+    public void setParam(Beershop param) {
+        this.param = beershopFacade.findByIdLang(1, getLang().getLocale().getLanguage());
     }
 
     /**
-     * @param street the street to set
+     * @return the lang
      */
-    public void setStreet(String street) {
-        this.street = street;
+    public language getLang() {
+        return lang;
     }
 
     /**
-     * @return the phone
+     * @param lang the lang to set
      */
-    public String getPhone() {
-        return phone;
+    public void setLang(language lang) {
+        this.lang = lang;
     }
 
     /**
-     * @param phone the phone to set
+     * @return the origin
      */
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public Translatecountry getOrigin() {
+        return origin;
     }
 
     /**
-     * @return the mail
+     * @param origin the origin to set
      */
-    public String getMail() {
-        return mail;
+    public void setOrigin(Translatecountry origin) {
+        this.origin = origin;
     }
 
-    /**
-     * @param mail the mail to set
-     */
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
 
-    /**
-     * @return the numStreet
-     */
-    public int getNumStreet() {
-        return numStreet;
-    }
-
-    /**
-     * @param numStreet the numStreet to set
-     */
-    public void setNumStreet(int numStreet) {
-        this.numStreet = numStreet;
-    }
-
-    /**
-     * @return the zipCode
-     */
-    public int getZipCode() {
-        return zipCode;
-    }
-
-    /**
-     * @param zipCode the zipCode to set
-     */
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    /**
-     * @return the city
-     */
-    public String getCity() {
-        return city;
-    }
-
-    /**
-     * @param city the city to set
-     */
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    /**
-     * @return the country
-     */
-    public Country getCountry() {
-        return country;
-    }
-
-    /**
-     * @param country the country to set
-     */
-    public void setCountry(Country country) {
-        this.country = country;
-    }
 
   
     

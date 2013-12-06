@@ -41,4 +41,22 @@ public class TranslateitemFacade extends AbstractFacade<Translateitem> implement
         return (Translateitem)query.getSingleResult();
     }
     
+     @Override
+    public List<Translateitem> findLast( String lang) {
+        
+        Query query;
+        query = em.createNamedQuery("Translateitem.findLast");
+        query.setParameter("lang", lang);
+        return query.getResultList();
+    }
+    
+    @Override
+    public List<Translateitem> searchItem (String name, String lang) {
+        Query query;
+        query = em.createNamedQuery("Translateitem.searchItem");
+        query.setParameter("name", name);
+        query.setParameter("lang", lang);
+        return query.getResultList();
+    }
+    
 }

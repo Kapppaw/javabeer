@@ -25,11 +25,18 @@
                             <div class="itemCategory">
                                 <!--<h:graphicImage url="resources/img/new.png" class="item-new-img"/>-->
                                 <h:graphicImage url="resources/img/orval.png" class="item-image"/>
-                                <span class="item-title"><h:outputText value="#{item.name}" /></span><br />
+                                <h:form>
+                                    <span class="item-title"><h:commandLink value="#{item.name}" action="#{beer.linkBeer(item.id)}" class="item-title">
+                                        </h:commandLink></span><br />
+                                    </h:form><br />
                                 <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : <h:outputText value="#{item.capacity}" />ml</span><br />
-                                <span class="item-more-info"><h:link value="#{msg.cat_moreInfo}" outcome="beer.xhtml" >
-                                        <f:param name="beerid" value="#{item.id}" />
-                                    </h:link></span>
+                                <span class="item-more-info">
+                                    <h:form>
+                                        <h:commandLink value="#{msg.cat_moreInfo}" action="#{beer.linkBeer(item.id)}">
+                                        </h:commandLink>
+                                    </h:form>
+                                    
+                                    </span>
                             </div>
                         </ui:repeat>
                         

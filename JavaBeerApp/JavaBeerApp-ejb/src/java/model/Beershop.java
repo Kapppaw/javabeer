@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Beershop.findAll", query = "SELECT b FROM Beershop b"),
     @NamedQuery(name = "Beershop.findById", query = "SELECT b FROM Beershop b WHERE b.id = :id"),
+    @NamedQuery(name = "Beershop.findByIdLang", query = "SELECT b FROM Beershop b, Country c, Languagetranslate lt, Translatecountry tc WHERE b.id = :id AND b.addresscountry.id = c.id AND lt.id = tc.languageid.id AND c.id = tc.countryid.id AND lt.name = :lang"),
     @NamedQuery(name = "Beershop.findByName", query = "SELECT b FROM Beershop b WHERE b.name = :name"),
     @NamedQuery(name = "Beershop.findByDateparam", query = "SELECT b FROM Beershop b WHERE b.dateparam = :dateparam"),
     @NamedQuery(name = "Beershop.findByAddressnumber", query = "SELECT b FROM Beershop b WHERE b.addressnumber = :addressnumber"),

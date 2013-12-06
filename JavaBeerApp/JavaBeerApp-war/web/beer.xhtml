@@ -14,18 +14,14 @@
                     <article id="resume">
                         <h:graphicImage url="resources/img/orval.png" class="item-image"/>
                         <p>
-                            <h:outputText value="#{msg.item_colour}"/> : <ui:repeat value="#{beer.aMoi()}" var="cat">
+                            <h:outputText value="#{msg.item_colour}"/> : <ui:repeat value="#{beer.listCategories()}" var="cat">
                                 <h:outputText value="#{cat.colourname} "/>
                                 
                                                 </ui:repeat><br />
                             <h:outputText value="#{msg.item_price}"/> : <h:outputText value="#{beer.beer.itemid.price}"/>€<br />
                             <h:outputText value="#{msg.item_size}"/> : <h:outputText value="#{beer.beer.itemid.capacity}"/>ml<br />
                             <h:outputText value="#{msg.item_degAlcohol}"/> : <h:outputText value="#{beer.beer.itemid.degalcohol}"/>°<br />
-                            <h:outputText value="#{msg.item_origin}"/> : 
-                            <ui:repeat value="#{beer.beer.itemid.origin.translatecountryCollection}" var="country">
-                                <h:outputText value="#{country.countryname} "/>
-                                
-                                                </ui:repeat><br />
+                            <h:outputText value="#{msg.item_origin}"/> : <h:outputText value="#{beer.origine().countryname}"/><br />
                             <h:outputText value="#{msg.item_label}"/> : <h:outputText value="#{beer.beer.itemid.labelid.name}"/><br />
                         </p>
                     </article>
@@ -33,6 +29,7 @@
                         <h1><h:outputText value="#{beer.beer.itemid.name}"/></h1>
                         <h2><h:outputText value="#{msg.item_description}"/></h2>
                         <p><h:outputText value="#{beer.beer.itemdesc}"/></p>
+                        
                         <h:form>
                             <h2><h:outputText value="#{msg.item_addCart}" /></h2>
                             <h:selectOneMenu id="qtyItem">

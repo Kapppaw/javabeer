@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c"),
-    @NamedQuery(name = "Country.findById", query = "SELECT c FROM Country c WHERE c.id = :id"),
+    @NamedQuery(name = "Country.findById", query = "SELECT  c FROM Country c WHERE c.id = :id"),
     @NamedQuery(name = "Country.findByUrlimage", query = "SELECT c FROM Country c WHERE c.urlimage = :urlimage")})
 public class Country implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -32,11 +32,14 @@ public class BeershopFacade extends AbstractFacade<Beershop> implements Beershop
     }
     
     
-    public Beershop find(Integer id) {
+    @Override
+    public Beershop findByIdLang(int id, String lang) {
         Query query;
-        query = em.createNamedQuery("Beershop.findById");
+        query = em.createNamedQuery("Beershop.findByIdLang");
         query.setParameter("id", id);
+        query.setParameter("lang", lang);
         return (Beershop)query.getSingleResult();
     }
+    
 
 }
