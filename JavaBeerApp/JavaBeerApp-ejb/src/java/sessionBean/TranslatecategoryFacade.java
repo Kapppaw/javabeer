@@ -40,4 +40,13 @@ public class TranslatecategoryFacade extends AbstractFacade<Translatecategory> i
         return query.getResultList();
     }
     
+    @Override
+    public List<Translatecategory> findByIdLanguage(String lang, int id) {
+        Query query;
+        query = em.createNamedQuery("Translatecategory.findByIdLanguage");
+        query.setParameter("lang", lang);
+        query.setParameter("id", id);
+        return query.getResultList();
+    }
+    
 }

@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -28,8 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "TRANSLATEITEM")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Translateitem.findAll", query = "SELECT t FROM Translateitem t"),
-    @NamedQuery(name = "Translateitem.findById", query = "SELECT t FROM Translateitem t WHERE t.id = :id"),
+    @NamedQuery(name = "Translateitem.findOne", query = "SELECT DISTINCT(t) FROM Translateitem t, Item i, Languagetranslate la, Category c, Categoryoftheitem ci, Translatecategory tc, Translatecountry tco, Country co WHERE t.itemid.id = i.id AND t.languageid.id = la.id AND co.id = tco.countryid.id AND i.origin.id = co.id AND tco.languageid.id = la.id AND tc.languageid.id = la.id  AND tc.categoryid.id = c.id  AND ci.categoryid.id = c.id AND i.id = ci.itemid.id AND la.name = :lang AND i.id = :id"),
+    @NamedQuery(name = "Translateitem.findByAll", query = "SELECT t FROM Translateitem t"),
     @NamedQuery(name = "Translateitem.findByItemdesc", query = "SELECT t FROM Translateitem t WHERE t.itemdesc = :itemdesc")})
 public class Translateitem implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -43,7 +45,14 @@ public class Translateitem implements Serializable {
     @Size(min = 1, max = 1000)
     @Column(name = "ITEMDESC")
     private String itemdesc;
-
+    @JoinColumn(name = "LANGUAGEID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Languagetranslate languageid;
+    @JoinColumn(name = "ITEMID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Item itemid;
+    
+    
     public Translateitem() {
     }
 
@@ -95,6 +104,34 @@ public class Translateitem implements Serializable {
     @Override
     public String toString() {
         return "data.Translateitem[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the languageid
+     */
+    public Languagetranslate getLanguageid() {
+        return languageid;
+    }
+
+    /**
+     * @param languageid the languageid to set
+     */
+    public void setLanguageid(Languagetranslate languageid) {
+        this.languageid = languageid;
+    }
+
+    /**
+     * @return the itemid
+     */
+    public Item getItemid() {
+        return itemid;
+    }
+
+    /**
+     * @param itemid the itemid to set
+     */
+    public void setItemid(Item itemid) {
+        this.itemid = itemid;
     }
     
 }

@@ -38,6 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "ITEM")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "Item.findBestSales", query = "SELECT  DISTINCT(i)  FROM Item i, Category c, Categoryoftheitem ci WHERE i.id = ci.itemid.id AND ci.categoryid.id = c.id ORDER BY i.quantitysale DESC"),
+    @NamedQuery(name = "Item.findByCat", query = "SELECT i FROM Item i, Category c, Categoryoftheitem ci WHERE i.id = ci.itemid.id AND ci.categoryid.id = c.id AND c.id = :idCat"),
     @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i"),
     @NamedQuery(name = "Item.findById", query = "SELECT i FROM Item i WHERE i.id = :id"),
     @NamedQuery(name = "Item.findByName", query = "SELECT i FROM Item i WHERE i.name = :name"),

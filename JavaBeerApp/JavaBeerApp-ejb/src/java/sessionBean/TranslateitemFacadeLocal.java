@@ -31,4 +31,6 @@ public interface TranslateitemFacadeLocal {
 
     int count();
     
+    Translateitem findOne(int id, String lang);
+    
 }

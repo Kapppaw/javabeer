@@ -31,4 +31,8 @@ public interface ItemFacadeLocal {
 
     int count();
     
+    List<Item> findByCat(int id);
+    
+    List<Item> findBestSales();
+    
 }

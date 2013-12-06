@@ -34,4 +34,6 @@ public interface TranslatecategoryFacadeLocal {
     
     List<Translatecategory> findByLanguage(String lang);
     
+    List<Translatecategory> findByIdLanguage(String lang, int id);
+    
 }

@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "RECOMMENDED")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Recommended.findAll", query = "SELECT r FROM Recommended r"),
+    @NamedQuery(name = "Recommended.findAll", query = "SELECT r FROM Recommended r  WHERE r.dateend >= CURRENT_DATE AND r.datebegin <= CURRENT_DATE"),
     @NamedQuery(name = "Recommended.findById", query = "SELECT r FROM Recommended r WHERE r.id = :id"),
     @NamedQuery(name = "Recommended.findByDatebegin", query = "SELECT r FROM Recommended r WHERE r.datebegin = :datebegin"),
     @NamedQuery(name = "Recommended.findByDateend", query = "SELECT r FROM Recommended r WHERE r.dateend = :dateend")})

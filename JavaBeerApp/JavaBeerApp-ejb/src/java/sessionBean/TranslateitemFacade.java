@@ -6,10 +6,12 @@
 
 package sessionBean;
 
+import java.util.List;
 import model.Translateitem;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,16 @@ public class TranslateitemFacade extends AbstractFacade<Translateitem> implement
 
     public TranslateitemFacade() {
         super(Translateitem.class);
+    }
+    
+    @Override
+    public Translateitem findOne(int id, String lang) {
+        
+        Query query;
+        query = em.createNamedQuery("Translateitem.findOne");
+        query.setParameter("lang", lang);
+        query.setParameter("id", id);
+        return (Translateitem)query.getSingleResult();
     }
     
 }
