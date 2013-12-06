@@ -13,7 +13,7 @@
                     <article id="categories">
                         <h2>CATEGORIES</h2>
                         <ul><ui:repeat value="#{category.categories}" var="cat">
-                                <li><h:outputText value="#{cat.colourname}" /></li>
+                                <li><h:commandLink value="#{cat.colourname}" action="#{cat}"/></li>
                                
                             </ui:repeat></ul>
      
