@@ -6,10 +6,13 @@
 
 package sessionBean;
 
+import java.util.List;
 import model.Translatepromo;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import model.Translatecountry;
 
 /**
  *
@@ -27,6 +30,15 @@ public class TranslatepromoFacade extends AbstractFacade<Translatepromo> impleme
 
     public TranslatepromoFacade() {
         super(Translatepromo.class);
+    }
+    
+    @Override
+    public List<Translatepromo> findCurrentLang(String lang) {
+        
+        Query query;
+        query = em.createNamedQuery("Translatepromo.findCurrentLang");
+        query.setParameter("lang", lang);
+        return query.getResultList();
     }
     
 }

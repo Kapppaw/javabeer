@@ -59,4 +59,12 @@ public class TranslateitemFacade extends AbstractFacade<Translateitem> implement
         return query.getResultList();
     }
     
+    @Override
+    public List<Translateitem> findCurrentPromoLang(String lang) {
+        Query query;
+        query = em.createNamedQuery("Translateitem.findLast");
+        query.setParameter("lang", lang);
+        return query.getResultList();
+    }
+    
 }
