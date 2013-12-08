@@ -11,87 +11,66 @@
 
             <ui:define name="content">
                 <section id="body">
-                    <article id="login">
-                        <h1><h:outputText value="#{msg.register_registrered}"/></h1>
-                        
-                        <h:form class="form">
-                            <h2><h:outputText value="#{msg.register_connexionTitle}"/></h2>
-                            <h:outputText value="#{msg.register_error_connect}" class="#{connexion.setBoldErreur()}" />
-                            <h:outputLabel value="#{msg.register_login}" for="pseudo"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                            <h:inputText id="pseudo" value="#{connexion.pseudo}" required="true" requiredMessage="#{msg.register_login_required}">
-                            </h:inputText>
-                            <span class="messageErrorForm"><h:message for="pseudo" /></span>
-                            <h:outputLabel value="#{msg.register_password}" for="password"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                            <h:inputSecret id="password" value="#{connexion.password}" required="true" requiredMessage="#{msg.register_password_required}">
-                            </h:inputSecret>
-                            <span class="messageErrorForm"><h:message for="password" /></span>
-                            
-                            <br />
-                            <h:commandButton value="#{msg.register_connexion}" action="#{connexion.login()}" class="button" /><br />
-                            <span id="qte"><h:outputText value="*"/></span> <h:outputText value=" #{msg.register_required}" class="required"/>
-                        </h:form>
-                        
-                    </article>
                     <article id="register">
-                        <h1><h:outputText value="#{msg.register_new}"/></h1>
+                        <h1><h:outputText value="#{msg.register_change_account}"/></h1>
                         
                         <h:form class="form">
                             <h2><h:outputText value="#{msg.register_connexionInfo}"/></h2>
                             <h:outputText value="#{msg.register_error_register}" class="#{register.setBoldErreur()}" />
                                 <h:outputLabel value="#{msg.register_login}" for="pseudo"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputText id="pseudo" value="#{register.pseudo}" required="true" requiredMessage="#{msg.register_login_required}" validatorMessage="#{msg.register_login_validator}">
+                                <h:inputText id="pseudo" value="#{changeCustomer.pseudo}" required="true" requiredMessage="#{msg.register_login_required}" validatorMessage="#{msg.register_login_validator}">
                                     <f:validateLength minimum="4" maximum="25" />
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="pseudo" /></span>
                                 <h:outputLabel value="#{msg.register_password}" for="password"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputSecret id="password" value="#{register.password}" required="true" requiredMessage="#{msg.register_password_required}" validatorMessage="#{msg.register_password_validator}">
+                                <h:inputSecret id="password" value="#{changeCustomer.password}" required="true" requiredMessage="#{msg.register_password_required}" validatorMessage="#{msg.register_password_validator}">
                                     <f:validateLength minimum="4" maximum="25" />
                                 </h:inputSecret>
                                 <span class="messageErrorForm"><h:message for="password" /></span>
                                 
                             <h2><h:outputText value="#{msg.register_personnalInfo}"/></h2>
                                 <h:outputLabel value="#{msg.register_name}" for="name" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputText id="name" value="#{register.name}" required="true" requiredMessage="#{msg.register_name_required}" validatorMessage="#{msg.register_password_validator}">
+                                <h:inputText id="name" value="#{changeCustomer.name}" required="true" requiredMessage="#{msg.register_name_required}" validatorMessage="#{msg.register_password_validator}">
                                     <f:validateLength minimum="2" maximum="50" />
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="name" /></span>
                                 
                                 <h:outputLabel value="#{msg.register_firstName}" for="firstname"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputText id="firstname" value="#{register.firstname}" required="true" requiredMessage="#{msg.register_firstname_required}" validatorMessage="#{msg.register_password_validator}">
+                                <h:inputText id="firstname" value="#{changeCustomer.firstname}" required="true" requiredMessage="#{msg.register_firstname_required}" validatorMessage="#{msg.register_password_validator}">
                                     <f:validateLength minimum="2" maximum="25" />
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="firstname" /></span>
                                 
                                 <h:outputLabel value="#{msg.register_email}" for="email" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputText id="email" value="#{register.email}" required="true" requiredMessage="#{msg.register_email_required}" validatorMessage="#{msg.register_email_validator}">
+                                <h:inputText id="email" value="#{changeCustomer.email}" required="true" requiredMessage="#{msg.register_email_required}" validatorMessage="#{msg.register_email_validator}">
                                     <f:validateLength minimum="2" maximum="25" />
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="email" /></span>
                                 
                                 <h:outputLabel value="#{msg.register_phone}" for="phone" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputText id="phone" value="#{register.phone}" required="true" requiredMessage="#{msg.register_phone_required}">
+                                <h:inputText id="phone" value="#{changeCustomer.phone}" required="true" requiredMessage="#{msg.register_phone_required}">
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="phone" /></span>
                                 
                                 <h:outputLabel value="#{msg.register_numStreet}" for="numStreet" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputText id="numStreet" value="#{register.adNumber}" required="true" requiredMessage="#{msg.register_numStreet_required}" validatorMessage="#{msg.register_numstreet_validator}">
+                                <h:inputText id="numStreet" value="#{changeCustomer.adNumber}" required="true" requiredMessage="#{msg.register_numStreet_required}" validatorMessage="#{msg.register_numstreet_validator}">
                                     <f:validateDoubleRange minimum="1" />
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="numStreet" /></span>
                                 
                                 <h:outputLabel value="#{msg.register_street}" for="street" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputText id="street" value="#{register.adStreet}" required="true" requiredMessage="#{msg.register_street_required}">
+                                <h:inputText id="street" value="#{changeCustomer.adStreet}" required="true" requiredMessage="#{msg.register_street_required}">
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="street" /></span>
                                 
                                 <h:outputLabel value="#{msg.register_city}" for="city" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputText id="city" value="#{register.adCity}" required="true" requiredMessage="#{msg.register_city_required}" validatorMessage="#{msg.register_city_validator}">
+                                <h:inputText id="city" value="#{changeCustomer.adCity}" required="true" requiredMessage="#{msg.register_city_required}" validatorMessage="#{msg.register_city_validator}">
                                     <f:validateLength minimum="2"/>
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="city" /></span>
                                 
                                 <h:outputLabel value="#{msg.register_zipCode}" for="zipcode" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputText id="zipcode" value="#{register.adZipCode}" required="true" requiredMessage="#{msg.register_zipcode_required}" validatorMessage="#{msg.register_zipcode_validator}">
+                                <h:inputText id="zipcode" value="#{changeCustomer.adZipCode}" required="true" requiredMessage="#{msg.register_zipcode_required}" validatorMessage="#{msg.register_zipcode_validator}">
                                     <f:validateDoubleRange minimum="1" />
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="zipcode" /></span>
@@ -104,11 +83,11 @@
                                  </h:selectOneMenu>
                                 
                                 <h:outputLabel value="#{msg.register_region}" for="region" />
-                                <h:inputText id="region" value="#{register.adRegion}">
+                                <h:inputText id="region" value="#{changeCustomer.adRegion}">
                                 </h:inputText>
                                 
                                 <h:outputLabel value="#{msg.register_province}" for="province" />
-                                <h:inputText id="province" value="#{register.adProvince}">
+                                <h:inputText id="province" value="#{changeCustomer.adProvince}">
                                 </h:inputText>
                                 
                             <br />

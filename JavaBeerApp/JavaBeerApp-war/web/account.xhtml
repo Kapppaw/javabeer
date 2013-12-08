@@ -10,6 +10,7 @@
 
             <ui:define name="content">
                 <h:form>
+                     <h:link value="#{msg.register_change}" outcome="change"/>
                      <h:commandButton value="#{msg.register_logout}" action="#{connexion.logout()}" />
                 </h:form>
             </ui:define>

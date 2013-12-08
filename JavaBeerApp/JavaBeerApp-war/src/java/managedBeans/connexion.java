@@ -27,7 +27,7 @@ public class connexion {
     private String password;
     private boolean connected = false;
     private boolean erreur = false;
-    
+    private List<Customer> cust;
     /**
      * Creates a new instance of connexion
      */
@@ -62,8 +62,13 @@ public class connexion {
         this.password = password;
     }
     
+    public List<Customer> getCustomer()
+    {
+        return cust = customerFacade.connect(this.getPseudo(), this.getPassword());
+    }
+    
     public String login() {
-        List<Customer> cust = customerFacade.connect(this.getPseudo(), this.getPassword());
+        cust = getCustomer();
         if (!cust.isEmpty()) {
             setConnected(true);
             return "index";
