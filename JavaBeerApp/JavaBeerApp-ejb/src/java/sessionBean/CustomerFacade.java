@@ -27,6 +27,35 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
         em.persist(entity);
     }
     
+    @Override
+    public void edit (Customer entity) {
+        Customer cust = em.find(Customer.class, entity.getId());
+        if(!cust.getLogin().equals(entity.getLogin()))
+            cust.setLogin(entity.getLogin());
+        if(!cust.getPassword().equals(entity.getPassword()))
+            cust.setPassword(entity.getPassword());
+        if(!cust.getName().equals(entity.getName()))
+            cust.setName(entity.getName());
+        if(!cust.getFirstname().equals(entity.getFirstname()))
+            cust.setFirstname(entity.getFirstname());
+        if(!cust.getEmail().equals(entity.getEmail()))
+            cust.setEmail(entity.getEmail());
+        if(!cust.getPhone().equals(entity.getPhone()))
+            cust.setPhone(entity.getPhone());
+        if(cust.getAddressnumber() != entity.getAddressnumber())
+            cust.setAddressnumber(entity.getAddressnumber());
+        if(!cust.getAddressstreet().equals(entity.getAddressstreet()))
+            cust.setAddressstreet(entity.getAddressstreet());
+        if(!cust.getAddresscity().equals(entity.getAddresscity()))
+            cust.setAddresscity(entity.getAddresscity());
+        if(cust.getAddresszipcode() != entity.getAddresszipcode())
+            cust.setAddresszipcode(entity.getAddresszipcode());
+        cust.setAddressregion(entity.getAddressregion());
+        cust.setAddressprovince(entity.getAddressprovince());
+        if(!cust.getAddresscountry().equals(entity.getAddresscountry()))
+            cust.setAddresscountry(entity.getAddresscountry());
+        em.persist(cust);
+    }
     
     @Override
     protected EntityManager getEntityManager() {

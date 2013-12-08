@@ -248,6 +248,10 @@ public class register {
     public String addCustomer() {     
         
         Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
+        if(!this.getAdRegion().isEmpty())
+            cust.setAddressregion(this.getAdRegion());
+        if(!this.getAdProvince().isEmpty())
+            cust.setAddressprovince(this.getAdProvince());
         List<Customer> testCust = customerFacade.findByLogin(this.getPseudo());
         if(testCust.isEmpty()) {
             customerFacade.create(cust);

@@ -8,10 +8,13 @@ package managedBeans;
 
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import model.Customer;
+import sessionBean.CustomerFacadeLocal;
+import sessionBean.TranslatecountryFacadeLocal;
 
 /**
  *
@@ -20,6 +23,8 @@ import model.Customer;
 @ManagedBean
 @ViewScoped
 public class changeCustomer {
+    @EJB
+    private CustomerFacadeLocal customerFacade;
 private List<Customer> cust;
 private String pseudo;
 private String password;
@@ -34,6 +39,7 @@ private int adZipCode;
 private String adCountry;
 private String adRegion;
 private String adProvince;
+private int custId;
 @ManagedProperty("#{connexion}")
 private connexion connex;
     /**
@@ -58,13 +64,25 @@ private connexion connex;
                 setAdStreet(custom.getAddressstreet());
                 setAdCity(custom.getAddresscity());
                 setAdZipCode(custom.getAddresszipcode());
-                //setAdCountry(custom.getAddresscountry());
                 setAdRegion(custom.getAddressregion());
                 setAdProvince(custom.getAddressprovince());
+                custId = custom.getId();
             }
         }
     }
-
+    
+    public String changeCustomer()
+    {
+        Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
+        if(!this.getAdRegion().isEmpty())
+            cust.setAddressregion(this.getAdRegion());
+        if(!this.getAdProvince().isEmpty())
+            cust.setAddressprovince(this.getAdProvince());
+        cust.setId(custId);
+        customerFacade.edit(cust);
+        return "index";
+    }
+    
     /**
      * @return the connex
      */

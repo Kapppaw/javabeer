@@ -78,7 +78,7 @@
                                 <h:outputLabel value="#{msg.register_country}" for="country" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
                                 
                                 
-                                <h:selectOneMenu id="country" value="#{register.adCountry}">
+                                <h:selectOneMenu id="country" value="#{changeCustomer.adCountry}">
                                     <f:selectItems value="#{register.countries}" var="currentCountry" itemValue="#{currentCountry.id}" itemLabel="#{currentCountry.countryname}"/>
                                  </h:selectOneMenu>
                                 
@@ -91,7 +91,7 @@
                                 </h:inputText>
                                 
                             <br />
-                            <h:commandButton value="#{msg.register_register}" action="#{register.addCustomer}" class="button"/><br />
+                            <h:commandButton value="#{msg.register_change_button}" action="#{changeCustomer.changeCustomer}" class="button"/><br />
                             <span id="qte"><h:outputText value="*"/></span> <h:outputText value=" #{msg.register_required}" class="required"/>
                         </h:form>
                         
