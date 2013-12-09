@@ -9,10 +9,13 @@
         <ui:composition template="./defaultTemplate.xhtml">
 
             <ui:define name="content">
-                <h:form>
-                     <h:link value="#{msg.register_change}" outcome="change"/>
-                     <h:commandButton value="#{msg.register_logout}" action="#{connexion.logout()}" />
-                </h:form>
+                <section id="body">
+                    <h1><h:outputText value="#{msg.h_account}" /></h1>
+                    <h:link value="#{msg.register_change}" outcome="change" class="editAccount"/><br /><br />
+                    <h:form>
+                        <h:commandButton value="#{msg.register_logout}" action="#{connexion.logout()}" class="button" />
+                    </h:form>
+                </section>
             </ui:define>
 
         </ui:composition>

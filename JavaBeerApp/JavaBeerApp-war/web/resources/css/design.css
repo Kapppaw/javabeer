@@ -561,3 +561,12 @@ footer a:hover {
     color: red;
     
 }
+
+.editAccount {
+    color: black;
+    text-decoration: none;
+}
+
+.editAccount:hover {
+    text-decoration: underline;
+}
