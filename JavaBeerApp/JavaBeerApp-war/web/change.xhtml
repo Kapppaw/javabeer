@@ -16,17 +16,20 @@
                         
                         <h:form class="form">
                             <h2><h:outputText value="#{msg.register_connexionInfo}"/></h2>
-                            <h:outputText value="#{msg.register_error_register}" class="#{register.setBoldErreur()}" />
-                                <h:outputLabel value="#{msg.register_login}" for="pseudo"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
-                                <h:inputText id="pseudo" value="#{changeCustomer.pseudo}" required="true" requiredMessage="#{msg.register_login_required}" validatorMessage="#{msg.register_login_validator}">
-                                    <f:validateLength minimum="4" maximum="25" />
-                                </h:inputText>
-                                <span class="messageErrorForm"><h:message for="pseudo" /></span>
+                            
+                                <h:outputText value="#{msg.register_error_confirm}" class="#{changeCustomer.setBoldErreurPassword()}" />
+                                
                                 <h:outputLabel value="#{msg.register_password}" for="password"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
                                 <h:inputSecret id="password" value="#{changeCustomer.password}" required="true" requiredMessage="#{msg.register_password_required}" validatorMessage="#{msg.register_password_validator}">
                                     <f:validateLength minimum="4" maximum="25" />
                                 </h:inputSecret>
                                 <span class="messageErrorForm"><h:message for="password" /></span>
+                                
+                                <h:outputLabel value="#{msg.register_confirm}" for="confirm"> <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
+                                <h:inputSecret id="confirm" value="#{changeCustomer.confirm}" required="true" requiredMessage="#{msg.register_confirm_required}" validatorMessage="#{msg.register_confirm_validator}">
+                                    <f:validateLength minimum="4" maximum="25" />
+                                </h:inputSecret>
+                                <span class="messageErrorForm"><h:message for="confirm" /></span>
                                 
                             <h2><h:outputText value="#{msg.register_personnalInfo}"/></h2>
                                 <h:outputLabel value="#{msg.register_name}" for="name" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
@@ -41,6 +44,8 @@
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="firstname" /></span>
                                 
+                                <br />
+                                <h:outputText value="#{msg.register_error_email}" class="#{changeCustomer.setBoldErreurEmail()}" />
                                 <h:outputLabel value="#{msg.register_email}" for="email" > <span id="qte"><h:outputText value="*"/></span></h:outputLabel>
                                 <h:inputText id="email" value="#{changeCustomer.email}" required="true" requiredMessage="#{msg.register_email_required}" validatorMessage="#{msg.register_email_validator}">
                                     <f:validateLength minimum="2" maximum="25" />

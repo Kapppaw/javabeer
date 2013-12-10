@@ -7,13 +7,13 @@
 package managedBeans;
 
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import model.Customer;
 import model.Translatecountry;
-import model.Translateitem;
 import sessionBean.CustomerFacadeLocal;
 import sessionBean.TranslatecountryFacadeLocal;
 
@@ -22,7 +22,7 @@ import sessionBean.TranslatecountryFacadeLocal;
  * @author Thibault
  */
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class register {
     @EJB
     private TranslatecountryFacadeLocal translatecountryFacade;
@@ -35,6 +35,7 @@ public class register {
     
     private String pseudo;
     private String password;
+    private String confirm;
     private String name;
     private String firstname;
     private String email;
@@ -47,7 +48,9 @@ public class register {
     private String adRegion;
     private String adProvince;
     
-    private boolean erreur;
+    private boolean erreurPseudo;
+    private boolean erreurPassword;
+    private boolean erreurEmail;
     
     public List<Translatecountry> getCountries () {
         
@@ -247,29 +250,69 @@ public class register {
     
     public String addCustomer() {     
         
-        Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
-        if(!this.getAdRegion().isEmpty())
-            cust.setAddressregion(this.getAdRegion());
-        if(!this.getAdProvince().isEmpty())
-            cust.setAddressprovince(this.getAdProvince());
-        List<Customer> testCust = customerFacade.findByLogin(this.getPseudo());
-        if(testCust.isEmpty()) {
-            customerFacade.create(cust);
-            return "index";
+        if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email)) {
+            if (password.equals(confirm)) {
+                Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
+                if(!this.getAdRegion().isEmpty())
+                    cust.setAddressregion(this.getAdRegion());
+                if(!this.getAdProvince().isEmpty())
+                    cust.setAddressprovince(this.getAdProvince());
+                List<Customer> testCust = customerFacade.findByLogin(this.getPseudo());
+                if(testCust.isEmpty()) {
+                    customerFacade.create(cust);
+                    return "index";
+                }
+                else {
+                    setErreurPseudo(true);
+                    return "register";
+                }
+            }
+            else {
+                setErreurPassword(true);
+                return "register";
+            }
         }
         else {
-            setErreur(true);
+            setErreurEmail(true);
             return "register";
         }
+        
+        
+        
+        
     }
     
-    public String setBoldErreur () {
-        if (isErreur()) {
-            setErreur(false);
+    public String setBoldErreurPseudo () {
+        if (isErreurPseudo()) {
+            setErreurPseudo(false);
             return "erreur";
         }
         else {
-            setErreur(false);
+            setErreurPseudo(false);
+            return "hide";
+        }
+            
+    }
+    
+    public String setBoldErreurPassword () {
+        if (isErreurPassword()) {
+            setErreurPassword(false);
+            return "erreur";
+        }
+        else {
+            setErreurPassword(false);
+            return "hide";
+        }
+            
+    }
+    
+    public String setBoldErreurEmail () {
+        if (isErreurEmail()) {
+            setErreurEmail(false);
+            return "erreur";
+        }
+        else {
+            setErreurEmail(false);
             return "hide";
         }
             
@@ -277,17 +320,17 @@ public class register {
     
 
     /**
-     * @return the erreur
+     * @return the erreurPseudo
      */
-    public boolean isErreur() {
-        return erreur;
+    public boolean isErreurPseudo() {
+        return erreurPseudo;
     }
 
     /**
-     * @param erreur the erreur to set
+     * @param erreur the erreurPseudo to set
      */
-    public void setErreur(boolean erreur) {
-        this.erreur = erreur;
+    public void setErreurPseudo(boolean erreur) {
+        this.erreurPseudo = erreur;
     }
 
     /**
@@ -302,6 +345,48 @@ public class register {
      */
     public void setLang(language lang) {
         this.lang = lang;
+    }
+
+    /**
+     * @return the confirm
+     */
+    public String getConfirm() {
+        return confirm;
+    }
+
+    /**
+     * @param confirm the confirm to set
+     */
+    public void setConfirm(String confirm) {
+        this.confirm = confirm;
+    }
+
+    /**
+     * @return the erreurPassword
+     */
+    public boolean isErreurPassword() {
+        return erreurPassword;
+    }
+
+    /**
+     * @param erreurPassword the erreurPassword to set
+     */
+    public void setErreurPassword(boolean erreurPassword) {
+        this.erreurPassword = erreurPassword;
+    }
+
+    /**
+     * @return the erreurEmail
+     */
+    public boolean isErreurEmail() {
+        return erreurEmail;
+    }
+
+    /**
+     * @param erreurEmail the erreurEmail to set
+     */
+    public void setErreurEmail(boolean erreurEmail) {
+        this.erreurEmail = erreurEmail;
     }
     
     

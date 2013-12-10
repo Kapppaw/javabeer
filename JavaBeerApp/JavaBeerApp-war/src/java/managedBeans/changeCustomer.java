@@ -7,48 +7,52 @@
 package managedBeans;
 
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import model.Customer;
 import sessionBean.CustomerFacadeLocal;
-import sessionBean.TranslatecountryFacadeLocal;
 
 /**
  *
  * @author adrien
  */
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class changeCustomer {
     @EJB
     private CustomerFacadeLocal customerFacade;
-private List<Customer> cust;
-private String pseudo;
-private String password;
-private String name;
-private String firstname;
-private String email;
-private String phone;
-private int adNumber;
-private String adStreet;
-private String adCity;
-private int adZipCode;
-private String adCountry;
-private String adRegion;
-private String adProvince;
-private int custId;
-@ManagedProperty("#{connexion}")
-private connexion connex;
+    private List<Customer> cust;
+    private String pseudo;
+    private String password;
+    private String confirm;
+    private String name;
+    private String firstname;
+    private String email;
+    private String phone;
+    private int adNumber;
+    private String adStreet;
+    private String adCity;
+    private int adZipCode;
+    private String adCountry;
+    private String adRegion;
+    private String adProvince;
+    private int custId;
+    @ManagedProperty("#{connexion}")
+    private connexion connex;
+
+    private boolean erreurPassword;
+    private boolean erreurEmail;
     /**
      * Creates a new instance of changeCustomer
      */
     public changeCustomer() {
     }
     
-        @PostConstruct
+    @PostConstruct
     public void init() {
         cust = connex.getCustomer();
         if(!cust.isEmpty())
@@ -73,14 +77,63 @@ private connexion connex;
     
     public String changeCustomer()
     {
+        /*
         Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
         if(!this.getAdRegion().isEmpty())
             cust.setAddressregion(this.getAdRegion());
         if(!this.getAdProvince().isEmpty())
             cust.setAddressprovince(this.getAdProvince());
-        cust.setId(custId);
-        customerFacade.edit(cust);
+        
         return "index";
+        */
+        if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email))  {
+            if (password.equals(confirm)) {
+                Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
+                if(!this.getAdRegion().isEmpty())
+                    cust.setAddressregion(this.getAdRegion());
+                if(!this.getAdProvince().isEmpty())
+                    cust.setAddressprovince(this.getAdProvince());
+
+                cust.setId(custId);
+                customerFacade.edit(cust);
+                return "index";
+            }
+            else {
+                setErreurPassword(true);
+                return "change";
+            }
+        }
+        else {
+            setErreurEmail(true);
+            return "change";
+        }
+        
+        
+    }
+
+    
+    public String setBoldErreurPassword () {
+        if (isErreurPassword()) {
+            setErreurPassword(false);
+            return "erreur";
+        }
+        else {
+            setErreurPassword(false);
+            return "hide";
+        }
+            
+    }
+    
+    public String setBoldErreurEmail () {
+        if (isErreurEmail()) {
+            setErreurEmail(false);
+            return "erreur";
+        }
+        else {
+            setErreurEmail(false);
+            return "hide";
+        }
+            
     }
     
     /**
@@ -277,5 +330,47 @@ private connexion connex;
      */
     public void setAdProvince(String adProvince) {
         this.adProvince = adProvince;
+    }
+
+    /**
+     * @return the confirm
+     */
+    public String getConfirm() {
+        return confirm;
+    }
+
+    /**
+     * @param confirm the confirm to set
+     */
+    public void setConfirm(String confirm) {
+        this.confirm = confirm;
+    }
+
+    /**
+     * @return the erreurPassword
+     */
+    public boolean isErreurPassword() {
+        return erreurPassword;
+    }
+
+    /**
+     * @param erreurPassword the erreurPassword to set
+     */
+    public void setErreurPassword(boolean erreurPassword) {
+        this.erreurPassword = erreurPassword;
+    }
+
+    /**
+     * @return the erreurEmail
+     */
+    public boolean isErreurEmail() {
+        return erreurEmail;
+    }
+
+    /**
+     * @param erreurEmail the erreurEmail to set
+     */
+    public void setErreurEmail(boolean erreurEmail) {
+        this.erreurEmail = erreurEmail;
     }
 }
