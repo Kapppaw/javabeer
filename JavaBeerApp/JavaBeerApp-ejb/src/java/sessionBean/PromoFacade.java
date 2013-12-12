@@ -6,10 +6,12 @@
 
 package sessionBean;
 
+import java.util.GregorianCalendar;
 import model.Promo;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,15 @@ public class PromoFacade extends AbstractFacade<Promo> implements PromoFacadeLoc
 
     public PromoFacade() {
         super(Promo.class);
+    }
+    
+    @Override
+    public Promo findPromoCurrent () {
+        Query query;
+        query = em.createNamedQuery("Promo.findPromoCurrent");
+        GregorianCalendar today = new java.util.GregorianCalendar();
+        query.setParameter("today", today.getTime());
+        return (Promo)query.getSingleResult();
     }
     
 }

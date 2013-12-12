@@ -31,4 +31,6 @@ public interface PromoFacadeLocal {
 
     int count();
     
+    Promo findPromoCurrent ();
+    
 }

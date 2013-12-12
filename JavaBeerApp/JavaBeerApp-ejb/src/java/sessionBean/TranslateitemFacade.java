@@ -6,6 +6,7 @@
 
 package sessionBean;
 
+import java.util.GregorianCalendar;
 import java.util.List;
 import model.Translateitem;
 import javax.ejb.Stateless;
@@ -62,8 +63,10 @@ public class TranslateitemFacade extends AbstractFacade<Translateitem> implement
     @Override
     public List<Translateitem> findCurrentPromoLang(String lang) {
         Query query;
-        query = em.createNamedQuery("Translateitem.findLast");
+        query = em.createNamedQuery("Translateitem.findCurrentPromoLang");
         query.setParameter("lang", lang);
+        GregorianCalendar today = new java.util.GregorianCalendar();
+        query.setParameter("today", today.getTime());
         return query.getResultList();
     }
     

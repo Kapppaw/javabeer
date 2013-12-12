@@ -11,10 +11,10 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import model.Promo;
 import model.Translateitem;
-import model.Translatepromo;
+import sessionBean.PromoFacadeLocal;
 import sessionBean.TranslateitemFacadeLocal;
-import sessionBean.TranslatepromoFacadeLocal;
 
 /**
  *
@@ -24,14 +24,17 @@ import sessionBean.TranslatepromoFacadeLocal;
 @ViewScoped
 public class sales {
     @EJB
+    private PromoFacadeLocal promoFacade;
+    @EJB
     private TranslateitemFacadeLocal translateitemFacade;
 
 
     @ManagedProperty("#{language}")
     private language lang;
     
-    private double newPrice;
+    private double pricePromo;
     private List<Translateitem> listItems;
+    private Promo currentPromo;
     
     
     /**
@@ -42,7 +45,11 @@ public class sales {
 
     public List<Translateitem> getItems () {
         listItems = translateitemFacade.findCurrentPromoLang(lang.getLocale().getLanguage());
-        
+        currentPromo = promoFacade.findPromoCurrent();
+        pricePromo = currentPromo.getReduction();
+        for (Translateitem x:listItems) {
+            x.getItemid().setPrice(x.getItemid().getPrice()*(100+pricePromo)/100);
+        }
         return listItems;
         
     }
@@ -62,17 +69,31 @@ public class sales {
     }
 
     /**
-     * @return the newPrice
+     * @return the pricePromo
      */
-    public double getNewPrice() {
-        return newPrice;
+    public double getPricePromo() {
+        return pricePromo;
     }
 
     /**
-     * @param newPrice the newPrice to set
+     * @param pricePromo the pricePromo to set
      */
-    public void setNewPrice(double newPrice) {
-        this.newPrice = newPrice;
+    public void setPricePromo(double pricePromo) {
+        this.pricePromo = pricePromo;
+    }
+
+    /**
+     * @return the currentPromo
+     */
+    public Promo getCurrentPromo() {
+        return currentPromo;
+    }
+
+    /**
+     * @param currentPromo the currentPromo to set
+     */
+    public void setCurrentPromo(Promo currentPromo) {
+        this.currentPromo = currentPromo;
     }
     
 }

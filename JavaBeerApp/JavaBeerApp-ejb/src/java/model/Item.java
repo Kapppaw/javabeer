@@ -71,7 +71,7 @@ public class Item implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "PRICE")
-    private BigDecimal price;
+    private double price;
     @Basic(optional = false)
     @NotNull
     @Column(name = "CAPACITY")
@@ -79,7 +79,7 @@ public class Item implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "DEGALCOHOL")
-    private BigDecimal degalcohol;
+    private double degalcohol;
     @Size(max = 255)
     @Column(name = "URLIMAGE")
     private String urlimage;
@@ -115,7 +115,7 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public Item(Integer id, String name, Date datearrived, BigDecimal price, int capacity, BigDecimal degalcohol, int stock, int quantitysale) {
+    public Item(Integer id, String name, Date datearrived, double price, int capacity, double degalcohol, int stock, int quantitysale) {
         this.id = id;
         this.name = name;
         this.datearrived = datearrived;
@@ -150,11 +150,11 @@ public class Item implements Serializable {
         this.datearrived = datearrived;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -166,11 +166,11 @@ public class Item implements Serializable {
         this.capacity = capacity;
     }
 
-    public BigDecimal getDegalcohol() {
+    public double getDegalcohol() {
         return degalcohol;
     }
 
-    public void setDegalcohol(BigDecimal degalcohol) {
+    public void setDegalcohol(double degalcohol) {
         this.degalcohol = degalcohol;
     }
 

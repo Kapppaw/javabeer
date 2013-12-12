@@ -42,6 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Promo.findByReduction", query = "SELECT p FROM Promo p WHERE p.reduction = :reduction"),
     @NamedQuery(name = "Promo.findByDatebegin", query = "SELECT p FROM Promo p WHERE p.datebegin = :datebegin"),
     @NamedQuery(name = "Promo.findByDateend", query = "SELECT p FROM Promo p WHERE p.dateend = :dateend"),
+    @NamedQuery(name = "Promo.findPromoCurrent", query = "SELECT p FROM Promo p WHERE p.datebegin <= :today AND p.dateend > :today"),
     @NamedQuery(name = "Promo.findByUrlimage", query = "SELECT p FROM Promo p WHERE p.urlimage = :urlimage")})
 public class Promo implements Serializable {
     private static final long serialVersionUID = 1L;

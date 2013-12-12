@@ -15,14 +15,14 @@
                     <div class="salesItem">
                         <h2><h:outputText value="#{item.itemid.name}"/></h2>
                         <p>
-                                <h:graphicImage url="resources/img/orval.png" class="salesImage"/>
+                            <h:graphicImage url="resources/img/orval.png" class="salesImage"/>
                             <h:outputText value="#{item.itemdesc}"/>
                             <br /><br />
                             <span class="salesNewPrice"><h:outputText value="#{msg.sales_newPrice}" /> : <h:outputText value="#{item.itemid.price * 0.85}"/>€</span>
                         </p>
                         <p>
                             <h:form>
-                                    <h:commandLink value="#{msg.cat_moreInfo}" action="#{beer.linkBeer(last.itemid.id)}" class="newsMoreInfo">
+                                <h:commandLink value="#{msg.cat_moreInfo}" action="#{beer.linkBeer(item.itemid.id)}" class="newsMoreInfo">
                                         </h:commandLink>
                                     </h:form>
                         </p>
