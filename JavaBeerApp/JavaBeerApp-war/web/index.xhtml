@@ -25,8 +25,8 @@
                     <ul class="list-item"><ui:repeat value="#{index.allItem}" var="item">
                         <li class="item">
                             <p>
-                                <h:graphicImage url="resources/img/new.png" class="item-new-img"/>
-                                <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                                <h:graphicImage url="#{item.itemid.urlimage}" class="item-image"/>
+                                <img src="resources/img/sale.png" alt="Sale" class="item-sale-img"  />
                                 <h:form>
                                     <span class="item-title"><h:commandLink value="#{item.itemid.name}" action="#{beer.linkBeer(item.itemid.id)}" class="item-title">
                                         </h:commandLink></span><br />
@@ -43,7 +43,7 @@
                     <ul class="list-item"><ui:repeat value="#{index.allItemBestSales}" var="itemBestSale">
                         <li class="item">
                             <p>
-                                <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                                <h:graphicImage url="#{itemBestSale.urlimage}" class="item-image"/>
                                 <h:form>
                                     <span class="item-title"><h:commandLink value="#{itemBestSale.name}" action="#{beer.linkBeer(itemBestSale.id)}" class="item-title">
                                         </h:commandLink></span><br />

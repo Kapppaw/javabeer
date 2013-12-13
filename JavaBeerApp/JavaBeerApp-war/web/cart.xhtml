@@ -47,7 +47,12 @@
                         </h:column>
                     </h:dataTable>
                     
-                    
+                    <h:form>
+                        <c:if test="#{connexion.connected}">
+                            <h:commandButton value="#{msg.order_valid}" action="#{order.validCommand()}" class="button" rendered="#{order.nbItems != 0}"/><br />
+                        </c:if>
+                        
+                    </h:form>
                     
                 </section>
             </ui:define>

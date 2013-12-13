@@ -23,8 +23,8 @@
                     <article id="items">
                         <ui:repeat value="#{category.listItems}" var="item">
                             <div class="itemCategory">
-                                <!--<h:graphicImage url="resources/img/new.png" class="item-new-img"/>-->
-                                <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                                
+                                <h:graphicImage url="#{item.urlimage}" class="item-image"/>
                                 <h:form>
                                     <span class="item-title"><h:commandLink value="#{item.name}" action="#{beer.linkBeer(item.id)}" class="item-title">
                                         </h:commandLink></span><br />
