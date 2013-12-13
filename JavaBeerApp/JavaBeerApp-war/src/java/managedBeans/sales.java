@@ -46,9 +46,13 @@ public class sales {
     public List<Translateitem> getItems () {
         listItems = translateitemFacade.findCurrentPromoLang(lang.getLocale().getLanguage());
         currentPromo = promoFacade.findPromoCurrent();
+        Promo promo = promoFacade.findPromoCurrent();
         pricePromo = currentPromo.getReduction();
+        double price;
         for (Translateitem x:listItems) {
-            x.getItemid().setPrice(x.getItemid().getPrice()*(100+pricePromo)/100);
+            price = (x.getItemid().getPrice());
+            price -= (promo.getReduction()*price/100);
+            x.getItemid().setPrice(price);
         }
         return listItems;
         

@@ -49,7 +49,7 @@ public class Iteminorder implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "PRICE")
-    private BigDecimal price;
+    private double price;
     @JoinColumn(name = "ORDERCARTID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Ordercart ordercartid;
@@ -64,10 +64,21 @@ public class Iteminorder implements Serializable {
         this.id = id;
     }
 
-    public Iteminorder(Integer id, int quantity, BigDecimal price) {
+    public Iteminorder(Integer id, int quantity, double price) {
         this.id = id;
         this.quantity = quantity;
         this.price = price;
+    }
+    
+    public Iteminorder(int quantity, double price) {
+        this.quantity = quantity;
+        this.price = price;
+    }
+    
+    public Iteminorder(int quantity, double price, Item item) {
+        this.quantity = quantity;
+        this.price = price;
+        this.itemid = item;
     }
 
     public Integer getId() {
@@ -86,11 +97,11 @@ public class Iteminorder implements Serializable {
         this.quantity = quantity;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

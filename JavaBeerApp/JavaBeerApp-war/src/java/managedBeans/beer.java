@@ -11,9 +11,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import model.Promo;
 import model.Translatecategory;
 import model.Translatecountry;
 import model.Translateitem;
+import sessionBean.PromoFacadeLocal;
 import sessionBean.TranslatecategoryFacadeLocal;
 import sessionBean.TranslatecountryFacadeLocal;
 import sessionBean.TranslateitemFacadeLocal;
@@ -25,6 +27,8 @@ import sessionBean.TranslateitemFacadeLocal;
 @ManagedBean
 @SessionScoped
 public class beer {
+    @EJB
+    private PromoFacadeLocal promoFacade;
     @EJB
     private TranslatecountryFacadeLocal translatecountryFacade;
     @EJB
@@ -61,7 +65,14 @@ public class beer {
     
     
     public Translateitem getBeer() {
-        return translateitemFacade.findOne(beerId, lang.getLocale().getLanguage());
+        Translateitem beer = translateitemFacade.findOne(beerId, lang.getLocale().getLanguage());
+        Promo promo = promoFacade.findPromoCurrent();
+        double price = beer.getItemid().getPrice();
+        if (promo.getCountrypromo().getId() == beer.getItemid().getOrigin().getId()) {
+            price -= (promo.getReduction()*price/100);
+            beer.getItemid().setPrice(price);
+        }
+        return beer;
     }
     
     public String linkBeer (int id) {

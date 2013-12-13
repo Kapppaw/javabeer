@@ -44,7 +44,7 @@
                             <h:graphicImage url="resources/img/caddie.png" id="caddi" />
                             <h:outputText value="  #{msg.h_cart}"/>
                             <span id="qte">
-                                <h:outputText value="(0)"/>
+                                <h:outputText value="(#{order.nbItems})"/>
                             </span>
                         </h:link>
                     </p>

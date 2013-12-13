@@ -12,8 +12,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import model.Item;
+import model.Promo;
 import model.Recommended;
+import model.Translateitem;
 import sessionBean.ItemFacadeLocal;
+import sessionBean.PromoFacadeLocal;
 import sessionBean.RecommendedFacadeLocal;
 
 /**
@@ -23,6 +26,8 @@ import sessionBean.RecommendedFacadeLocal;
 @ManagedBean
 @ViewScoped
 public class index {
+    @EJB
+    private PromoFacadeLocal promoFacade;
     @EJB
     private ItemFacadeLocal itemFacade;
     @EJB
@@ -39,11 +44,31 @@ public class index {
     private List<Item> listItemsBestSales;
     
     public List<Recommended> getAllItem() {
-        return recommendedFacade.findAll();
+        List<Recommended> beers = recommendedFacade.findAll();
+        Promo promo = promoFacade.findPromoCurrent();
+        double price;
+        for (Recommended x:beers) {
+            if (promo.getCountrypromo().getId() == x.getItemid().getOrigin().getId()) {
+                price = (x.getItemid().getPrice());
+                price -= (promo.getReduction()*price/100);
+                x.getItemid().setPrice(price);
+            }
+        }
+        return beers;
     }
     
     public List<Item> getAllItemBestSales() {
-        return itemFacade.findBestSales();
+        List<Item> beers = itemFacade.findAll();
+        Promo promo = promoFacade.findPromoCurrent();
+        double price;
+        for (Item x:beers) {
+            if (promo.getCountrypromo().getId() == x.getOrigin().getId()) {
+                price = (x.getPrice());
+                price -= (promo.getReduction()*price/100);
+                x.setPrice(price);
+            }
+        }
+        return beers;
     }
     
     @PostConstruct
