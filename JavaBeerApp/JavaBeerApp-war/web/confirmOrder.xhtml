@@ -6,7 +6,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    
     <body>
 
         <ui:composition template="./defaultTemplate.xhtml">
@@ -25,11 +24,7 @@
                             <f:facet name="header">
                                 <h:outputText  value="#{msg.order_quantity}"/>
                             </f:facet> 
-                            <h:form>
-                                <h:commandButton value="-" action="#{order.downQte(cart.itemid.id)}"/> 
                                 <h:outputText value="#{cart.quantity}" /> 
-                                <h:commandButton value="+" action="#{order.upQte(cart.itemid.id)}"/> 
-                            </h:form>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -37,20 +32,12 @@
                             </f:facet>
                             <h:outputText value="#{cart.price * cart.quantity}" />  
                         </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText  value="#{msg.order_delete}"/>
-                            </f:facet>
-                            <h:form>
-                                <h:commandButton action="#{order.deleteItem(cart.itemid.id)}" value="Delete" />
-                            </h:form>
-                            
-                        </h:column>
                     </h:dataTable>
                     
                     <h:form>
                         <c:if test="#{connexion.connected}">
-                            <h:commandButton value="#{msg.order_valid}" action="confirmOrder" class="button" rendered="#{order.nbItems != 0}"/><br />
+                            <h:commandButton value="#{msg.order_confirm}" action="#{order.validCommand()}" class="button" rendered="#{order.nbItems != 0}"/>
+                            <h:commandButton value="#{msg.order_return}" action="index" class="button" rendered="#{order.nbItems != 0}"/><br />
                         </c:if>
                         
                     </h:form>
