@@ -28,6 +28,7 @@ public class connexion {
     private boolean connected = false;
     private boolean erreur = false;
     private List<Customer> cust;
+    private int idCust;
     /**
      * Creates a new instance of connexion
      */
@@ -71,6 +72,7 @@ public class connexion {
         cust = getCustomer();
         if (!cust.isEmpty()) {
             setConnected(true);
+            setIdCust((int) cust.get(0).getId());
             return "index";
         }
         else {
@@ -133,6 +135,20 @@ public class connexion {
             return "hide";
         }
             
+    }
+
+    /**
+     * @return the idCust
+     */
+    public int getIdCust() {
+        return idCust;
+    }
+
+    /**
+     * @param idCust the idCust to set
+     */
+    public void setIdCust(int idCust) {
+        this.idCust = idCust;
     }
 
     

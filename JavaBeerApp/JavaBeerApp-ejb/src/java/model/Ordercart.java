@@ -69,6 +69,11 @@ public class Ordercart implements Serializable {
         this.dateorder = dateorder;
     }
 
+    public Ordercart(Date dateorder, Customer customer) {
+        this.dateorder = dateorder;
+        this.customerid = customer;
+    }
+    
     public Integer getId() {
         return id;
     }

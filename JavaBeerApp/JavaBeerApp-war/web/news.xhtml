@@ -15,7 +15,7 @@
                     <div class="newsItem">
                         <h2><h:outputText value="#{last.itemid.name}"/></h2>
                         <p>
-                           <h:graphicImage url="resources/img/orval.png" class="newsImage"/>
+                            <h:graphicImage url="#{last.itemid.urlimage}" class="newsImage"/>
                            <h:outputText value="#{last.itemdesc}"/>
                         </p>
                         <p><h:form>

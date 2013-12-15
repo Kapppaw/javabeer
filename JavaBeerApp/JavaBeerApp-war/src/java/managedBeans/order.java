@@ -7,17 +7,22 @@
 package managedBeans;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import model.Customer;
 import model.Item;
 import model.Iteminorder;
+import model.Ordercart;
 import model.Promo;
 import sessionBean.ItemFacadeLocal;
 import sessionBean.IteminorderFacadeLocal;
+import sessionBean.OrdercartFacadeLocal;
 import sessionBean.PromoFacadeLocal;
 
 /**
@@ -27,6 +32,8 @@ import sessionBean.PromoFacadeLocal;
 @ManagedBean
 @SessionScoped
 public class order {
+    @EJB
+    private OrdercartFacadeLocal ordercartFacade;
     @EJB
     private PromoFacadeLocal promoFacade;
     @EJB
@@ -38,6 +45,8 @@ public class order {
     private int qte;
     private int nbItems;
     
+    @ManagedProperty("#{connexion}")
+    private connexion conne;
     
     /**
      * Creates a new instance of order
@@ -88,6 +97,23 @@ public class order {
         orderMap.get(id).setQuantity(orderMap.get(id).getQuantity() + 1);
     }
 
+    public String validCommand() {
+        GregorianCalendar today = new java.util.GregorianCalendar();
+        Customer cust = new Customer(conne.getIdCust());
+        Ordercart cart = new Ordercart(today.getTime(), cust);
+        ordercartFacade.create(cart);
+        
+        for(Entry<Integer, Iteminorder> paulichon : orderMap.entrySet()) {
+            Iteminorder item = paulichon.getValue();
+            item.setOrdercartid(cart);
+            iteminorderFacade.create(item);
+        }
+        orderMap = new HashMap<>();
+        nbItems = 0;
+        
+        return "orderComplete";
+    }
+    
     /**
      * @return the qte
      */
@@ -132,6 +158,20 @@ public class order {
      */
     public void setNbItems(int nbItems) {
         this.nbItems = nbItems;
+    }
+
+    /**
+     * @return the conne
+     */
+    public connexion getConne() {
+        return conne;
+    }
+
+    /**
+     * @param conne the conne to set
+     */
+    public void setConne(connexion conne) {
+        this.conne = conne;
     }
        
    

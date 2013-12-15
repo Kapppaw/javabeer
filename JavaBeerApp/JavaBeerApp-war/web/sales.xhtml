@@ -15,7 +15,7 @@
                     <div class="salesItem">
                         <h2><h:outputText value="#{item.itemid.name}"/></h2>
                         <p>
-                            <h:graphicImage url="resources/img/orval.png" class="salesImage"/>
+                            <h:graphicImage url="#{item.itemid.urlimage}" class="salesImage"/>
                             <h:outputText value="#{item.itemdesc}"/>
                             <br /><br />
                             <span class="salesNewPrice"><h:outputText value="#{msg.sales_newPrice}" /> : <h:outputText value="#{item.itemid.price}"/>€</span>

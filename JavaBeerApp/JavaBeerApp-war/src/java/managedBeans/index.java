@@ -14,7 +14,6 @@ import javax.faces.bean.ViewScoped;
 import model.Item;
 import model.Promo;
 import model.Recommended;
-import model.Translateitem;
 import sessionBean.ItemFacadeLocal;
 import sessionBean.PromoFacadeLocal;
 import sessionBean.RecommendedFacadeLocal;
@@ -42,6 +41,8 @@ public class index {
     
     private List<Recommended> listItemsRecommended;
     private List<Item> listItemsBestSales;
+    
+    private boolean bob;
     
     public List<Recommended> getAllItem() {
         List<Recommended> beers = recommendedFacade.findAll();
@@ -74,6 +75,20 @@ public class index {
     @PostConstruct
     public void init() {
         listItemsRecommended = getAllItem();
+    }
+
+    /**
+     * @return the bob
+     */
+    public boolean isBob() {
+        return bob;
+    }
+
+    /**
+     * @param bob the bob to set
+     */
+    public void setBob(boolean bob) {
+        this.bob = bob;
     }
     
 }

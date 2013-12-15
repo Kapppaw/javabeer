@@ -12,7 +12,7 @@
             <ui:define name="content">
                 <section id="body">
                     <article id="resume">
-                        <h:graphicImage url="resources/img/orval.png" class="item-image"/>
+                        <h:graphicImage url="#{beer.beer.itemid.urlimage}" class="item-image"/>
                         <p>
                             <h:outputText value="#{msg.item_colour}"/> : <ui:repeat value="#{beer.listCategories()}" var="cat">
                                 <h:outputText value="#{cat.colourname} "/>

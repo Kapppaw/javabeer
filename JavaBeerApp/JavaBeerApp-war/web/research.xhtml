@@ -14,13 +14,13 @@
                 <section id="body">
                     <h1><h:outputText value="#{msg.research_title}"/></h1>
                     
-                    <h:outputText value="prout prout" rendered="#{research.items.size() == 0}"/>
+                    <h:outputText value="#{msg.research_notfound}" rendered="#{research.items.size() == 0}"/>
                     
                     <ui:repeat value="#{research.items}" var="item">
                     <div class="newsItem">
                         <h2><h:outputText value="#{item.itemid.name}"/></h2>
                         <p>
-                           <h:graphicImage url="resources/img/orval.png" class="newsImage"/>
+                            <h:graphicImage url="#{item.itemid.urlimage}" class="newsImage"/>
                            <h:outputText value="#{item.itemdesc}"/>
                         </p>
                         <p><h:form>
