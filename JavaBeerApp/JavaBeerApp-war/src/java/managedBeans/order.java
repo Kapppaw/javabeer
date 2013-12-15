@@ -46,7 +46,7 @@ public class order {
     private int nbItems;
     
     @ManagedProperty("#{connexion}")
-    private connexion conne;
+    private connexion connex;
     
     /**
      * Creates a new instance of order
@@ -56,24 +56,24 @@ public class order {
     }
     
     public void addItem (int id) {
-        Item jose = itemFacade.find(id);
+        Item currentItem = itemFacade.find(id);
         Promo promo = promoFacade.findPromoCurrent();
-        double price = jose.getPrice();
-        boolean aTrouverJose = false;
-        if (promo.getCountrypromo().getId() == jose.getOrigin().getId()) {
+        double price = currentItem.getPrice();
+        boolean find = false;
+        if (promo.getCountrypromo().getId() == currentItem.getOrigin().getId()) {
             price -= (promo.getReduction()*price/100);
 
         }
-        for(Entry<Integer, Iteminorder> paulichon : orderMap.entrySet()) {
-            if (paulichon.getKey() == id) {
-                paulichon.getValue().setQuantity(paulichon.getValue().getQuantity() + qte);
-                aTrouverJose = true;
+        for(Entry<Integer, Iteminorder> item : orderMap.entrySet()) {
+            if (item.getKey() == id) {
+                item.getValue().setQuantity(item.getValue().getQuantity() + qte);
+                find = true;
             }
                 
         }
-        if (aTrouverJose == false) {
+        if (find == false) {
             nbItems++;
-            Iteminorder item = new Iteminorder(qte, price, jose);
+            Iteminorder item = new Iteminorder(qte, price, currentItem);
             orderMap.put(id, item);
         }
         
@@ -99,14 +99,16 @@ public class order {
 
     public String validCommand() {
         GregorianCalendar today = new java.util.GregorianCalendar();
-        Customer cust = new Customer(conne.getIdCust());
+        Customer cust = new Customer(connex.getIdCust());
         Ordercart cart = new Ordercart(today.getTime(), cust);
         ordercartFacade.create(cart);
         
-        for(Entry<Integer, Iteminorder> paulichon : orderMap.entrySet()) {
-            Iteminorder item = paulichon.getValue();
+        for(Entry<Integer, Iteminorder> currentItem : orderMap.entrySet()) {
+            Iteminorder item = currentItem.getValue();
             item.setOrdercartid(cart);
             iteminorderFacade.create(item);
+            Item updateItem = new Item(item.getItemid().getId(), item.getItemid().getName(), item.getItemid().getDatearrived(), item.getItemid().getPrice(), item.getItemid().getCapacity(), item.getItemid().getDegalcohol(), item.getItemid().getQuantitysale() + item.getQuantity());
+            itemFacade.edit(updateItem);
         }
         orderMap = new HashMap<>();
         nbItems = 0;
@@ -161,17 +163,17 @@ public class order {
     }
 
     /**
-     * @return the conne
+     * @return the connex
      */
-    public connexion getConne() {
-        return conne;
+    public connexion getConnex() {
+        return connex;
     }
 
     /**
-     * @param conne the conne to set
+     * @param conne the connex to set
      */
-    public void setConne(connexion conne) {
-        this.conne = conne;
+    public void setConnex(connexion conne) {
+        this.connex = conne;
     }
        
    

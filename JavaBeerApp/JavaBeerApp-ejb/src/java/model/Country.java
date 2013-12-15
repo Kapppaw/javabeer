@@ -19,7 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,8 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c"),
-    @NamedQuery(name = "Country.findById", query = "SELECT  c FROM Country c WHERE c.id = :id"),
-    @NamedQuery(name = "Country.findByUrlimage", query = "SELECT c FROM Country c WHERE c.urlimage = :urlimage")})
+    @NamedQuery(name = "Country.findById", query = "SELECT  c FROM Country c WHERE c.id = :id")})
 public class Country implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,9 +39,6 @@ public class Country implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Size(max = 255)
-    @Column(name = "URLIMAGE")
-    private String urlimage;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "addresscountry")
     private Collection<Customer> customerCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "origin")
@@ -68,14 +63,6 @@ public class Country implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUrlimage() {
-        return urlimage;
-    }
-
-    public void setUrlimage(String urlimage) {
-        this.urlimage = urlimage;
     }
 
     @XmlTransient

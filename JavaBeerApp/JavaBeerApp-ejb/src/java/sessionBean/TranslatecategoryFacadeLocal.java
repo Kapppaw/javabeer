@@ -8,7 +8,6 @@ package sessionBean;
 
 import model.Translatecategory;
 import java.util.List;
-import java.util.Locale;
 import javax.ejb.Local;
 
 /**

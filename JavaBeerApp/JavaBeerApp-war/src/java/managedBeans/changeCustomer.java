@@ -77,15 +77,6 @@ public class changeCustomer {
     
     public String changeCustomer()
     {
-        /*
-        Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
-        if(!this.getAdRegion().isEmpty())
-            cust.setAddressregion(this.getAdRegion());
-        if(!this.getAdProvince().isEmpty())
-            cust.setAddressprovince(this.getAdProvince());
-        
-        return "index";
-        */
         if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email))  {
             if (password.equals(confirm)) {
                 Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));

@@ -21,7 +21,6 @@ public class language {
     private Locale locale = new Locale("en");
     private boolean boolfr = false;
     private boolean boolen = true;
-    private String lang;
     
     public Locale getLocale () {
         return locale;
@@ -57,18 +56,6 @@ public class language {
             return "";
     }
 
-    /**
-     * @return the lang
-     */
-    public String getLang() {
-        return getLocale().getCountry();
-    }
-
-    /**
-     * @param lang the lang to set
-     */
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
+   
     
 }

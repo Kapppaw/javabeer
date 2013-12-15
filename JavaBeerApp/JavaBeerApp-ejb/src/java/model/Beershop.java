@@ -43,10 +43,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Beershop.findByAddresscity", query = "SELECT b FROM Beershop b WHERE b.addresscity = :addresscity"),
     @NamedQuery(name = "Beershop.findByAddresszipcode", query = "SELECT b FROM Beershop b WHERE b.addresszipcode = :addresszipcode"),
     @NamedQuery(name = "Beershop.findByPhone", query = "SELECT b FROM Beershop b WHERE b.phone = :phone"),
-    @NamedQuery(name = "Beershop.findByEmail", query = "SELECT b FROM Beershop b WHERE b.email = :email"),
-    @NamedQuery(name = "Beershop.findByNumcptcustomer", query = "SELECT b FROM Beershop b WHERE b.numcptcustomer = :numcptcustomer"),
-    @NamedQuery(name = "Beershop.findByDeliveryamount", query = "SELECT b FROM Beershop b WHERE b.deliveryamount = :deliveryamount"),
-    @NamedQuery(name = "Beershop.findByDeliverymin", query = "SELECT b FROM Beershop b WHERE b.deliverymin = :deliverymin")})
+    @NamedQuery(name = "Beershop.findByEmail", query = "SELECT b FROM Beershop b WHERE b.email = :email")})
 public class Beershop implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -94,18 +91,6 @@ public class Beershop implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "EMAIL")
     private String email;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "NUMCPTCUSTOMER")
-    private int numcptcustomer;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "DELIVERYAMOUNT")
-    private int deliveryamount;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "DELIVERYMIN")
-    private int deliverymin;
     @JoinColumn(name = "ADDRESSCOUNTRY", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Country addresscountry;
@@ -117,7 +102,7 @@ public class Beershop implements Serializable {
         this.id = id;
     }
 
-    public Beershop(Integer id, String name, Date dateparam, int addressnumber, String addressstreet, String addresscity, int addresszipcode, String phone, String email, int numcptcustomer, int deliveryamount, int deliverymin) {
+    public Beershop(Integer id, String name, Date dateparam, int addressnumber, String addressstreet, String addresscity, int addresszipcode, String phone, String email) {
         this.id = id;
         this.name = name;
         this.dateparam = dateparam;
@@ -127,9 +112,6 @@ public class Beershop implements Serializable {
         this.addresszipcode = addresszipcode;
         this.phone = phone;
         this.email = email;
-        this.numcptcustomer = numcptcustomer;
-        this.deliveryamount = deliveryamount;
-        this.deliverymin = deliverymin;
     }
 
     public Integer getId() {
@@ -202,30 +184,6 @@ public class Beershop implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getNumcptcustomer() {
-        return numcptcustomer;
-    }
-
-    public void setNumcptcustomer(int numcptcustomer) {
-        this.numcptcustomer = numcptcustomer;
-    }
-
-    public int getDeliveryamount() {
-        return deliveryamount;
-    }
-
-    public void setDeliveryamount(int deliveryamount) {
-        this.deliveryamount = deliveryamount;
-    }
-
-    public int getDeliverymin() {
-        return deliverymin;
-    }
-
-    public void setDeliverymin(int deliverymin) {
-        this.deliverymin = deliverymin;
     }
 
     public Country getAddresscountry() {

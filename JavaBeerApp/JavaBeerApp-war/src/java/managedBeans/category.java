@@ -7,7 +7,6 @@
 package managedBeans;
 
 import java.util.List;
-import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

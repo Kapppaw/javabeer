@@ -39,10 +39,31 @@ public class ItemFacade extends AbstractFacade<Item> implements ItemFacadeLocal 
         return query.getResultList();
     }
     
+    @Override
     public List<Item> findBestSales () {
         Query query;
         query = em.createNamedQuery("Item.findBestSales");
         return query.getResultList();
+    }
+   
+    @Override
+    public void edit (Item entity) {
+        Item item = em.find(Item.class, entity.getId());
+        
+        if(!item.getName().equals(entity.getName()))
+            item.setName(entity.getName());
+        if(!item.getDatearrived().equals(entity.getDatearrived()))
+            item.setDatearrived(entity.getDatearrived());
+        if(item.getPrice() != entity.getPrice())
+            item.setPrice(entity.getPrice());
+        if(item.getQuantitysale() != entity.getQuantitysale())
+            item.setQuantitysale(entity.getQuantitysale());
+        if(item.getDegalcohol() != entity.getDegalcohol())
+            item.setDegalcohol(entity.getDegalcohol());
+        if(item.getCapacity() != entity.getCapacity())
+            item.setCapacity(entity.getCapacity());
+        
+        em.persist(item);
     }
     
     

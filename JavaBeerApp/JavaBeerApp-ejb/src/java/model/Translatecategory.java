@@ -34,8 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Translatecategory.findByIdLanguage", query = "SELECT t FROM Translatecategory t, Languagetranslate l, Category c, Categoryoftheitem ci, Item i WHERE t.languageid.id = l.id AND l.name = :lang AND t.categoryid.id = c.id AND ci.itemid.id = :id AND ci.itemid.id = i.id AND c.id = ci.categoryid.id"),
     @NamedQuery(name = "Translatecategory.findAll", query = "SELECT t FROM Translatecategory t"),
     @NamedQuery(name = "Translatecategory.findById", query = "SELECT t FROM Translatecategory t WHERE t.id = :id"),
-    @NamedQuery(name = "Translatecategory.findByColourname", query = "SELECT t FROM Translatecategory t WHERE t.colourname = :colourname"),
-    @NamedQuery(name = "Translatecategory.findByColourdesc", query = "SELECT t FROM Translatecategory t WHERE t.colourdesc = :colourdesc")})
+    @NamedQuery(name = "Translatecategory.findByColourname", query = "SELECT t FROM Translatecategory t WHERE t.colourname = :colourname")})
 public class Translatecategory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,11 +47,6 @@ public class Translatecategory implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "COLOURNAME")
     private String colourname;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "COLOURDESC")
-    private String colourdesc;
     @JoinColumn(name = "LANGUAGEID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Languagetranslate languageid;
@@ -67,10 +61,9 @@ public class Translatecategory implements Serializable {
         this.id = id;
     }
 
-    public Translatecategory(Integer id, String colourname, String colourdesc) {
+    public Translatecategory(Integer id, String colourname) {
         this.id = id;
         this.colourname = colourname;
-        this.colourdesc = colourdesc;
     }
 
     public Integer getId() {
@@ -87,14 +80,6 @@ public class Translatecategory implements Serializable {
 
     public void setColourname(String colourname) {
         this.colourname = colourname;
-    }
-
-    public String getColourdesc() {
-        return colourdesc;
-    }
-
-    public void setColourdesc(String colourdesc) {
-        this.colourdesc = colourdesc;
     }
 
     public Languagetranslate getLanguageid() {

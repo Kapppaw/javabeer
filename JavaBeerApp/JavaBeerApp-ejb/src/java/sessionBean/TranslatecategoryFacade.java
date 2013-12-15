@@ -7,7 +7,6 @@
 package sessionBean;
 
 import java.util.List;
-import java.util.Locale;
 import model.Translatecategory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

@@ -19,7 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,8 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
-    @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
-    @NamedQuery(name = "Category.findByUrlimage", query = "SELECT c FROM Category c WHERE c.urlimage = :urlimage")})
+    @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id")})
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,9 +39,6 @@ public class Category implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Size(max = 255)
-    @Column(name = "URLIMAGE")
-    private String urlimage;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryid")
     private Collection<Translatecategory> translatecategoryCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryid")
@@ -62,14 +57,6 @@ public class Category implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUrlimage() {
-        return urlimage;
-    }
-
-    public void setUrlimage(String urlimage) {
-        this.urlimage = urlimage;
     }
 
     @XmlTransient

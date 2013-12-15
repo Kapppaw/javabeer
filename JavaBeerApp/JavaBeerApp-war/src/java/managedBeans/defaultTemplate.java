@@ -11,7 +11,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import model.Beershop;
-import model.Country;
 import model.Translatecountry;
 import sessionBean.BeershopFacadeLocal;
 import sessionBean.TranslatecountryFacadeLocal;
@@ -35,19 +34,12 @@ public class defaultTemplate {
     
     private Translatecountry origin;
     
-    
-    
-    
-    
     /**
      * Creates a new instance of defaultTemplate
      */
     public defaultTemplate() {
     }
 
-    
-    
-    
     public Translatecountry origine () {
         setOrigin(translatecountryFacade.findByParamIdLang(1, lang.getLocale().getLanguage()));
         return getOrigin();

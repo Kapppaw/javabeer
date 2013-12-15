@@ -46,8 +46,7 @@ public class beer {
      */
     public beer() {
     }
-    
-    private Translateitem beer;
+
     private List<Translatecategory> listCat;
     private Translatecountry origin;
     

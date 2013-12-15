@@ -59,6 +59,76 @@ public class register {
     }
     
     
+    public String addCustomer() {     
+        
+        if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email)) {
+            if (password.equals(confirm)) {
+                Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
+                if(!this.getAdRegion().isEmpty())
+                    cust.setAddressregion(this.getAdRegion());
+                if(!this.getAdProvince().isEmpty())
+                    cust.setAddressprovince(this.getAdProvince());
+                List<Customer> testCust = customerFacade.findByLogin(this.getPseudo());
+                if(testCust.isEmpty()) {
+                    customerFacade.create(cust);
+                    return "index";
+                }
+                else {
+                    setErreurPseudo(true);
+                    return "register";
+                }
+            }
+            else {
+                setErreurPassword(true);
+                return "register";
+            }
+        }
+        else {
+            setErreurEmail(true);
+            return "register";
+        }
+        
+        
+        
+        
+    }
+    
+    public String setBoldErreurPseudo () {
+        if (isErreurPseudo()) {
+            setErreurPseudo(false);
+            return "erreur";
+        }
+        else {
+            setErreurPseudo(false);
+            return "hide";
+        }
+            
+    }
+    
+    public String setBoldErreurPassword () {
+        if (isErreurPassword()) {
+            setErreurPassword(false);
+            return "erreur";
+        }
+        else {
+            setErreurPassword(false);
+            return "hide";
+        }
+            
+    }
+    
+    public String setBoldErreurEmail () {
+        if (isErreurEmail()) {
+            setErreurEmail(false);
+            return "erreur";
+        }
+        else {
+            setErreurEmail(false);
+            return "hide";
+        }
+            
+    }
+    
     /**
      * Creates a new instance of register
      */
@@ -247,78 +317,6 @@ public class register {
         this.adProvince = adProvince;
     }
     
-    
-    public String addCustomer() {     
-        
-        if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", email)) {
-            if (password.equals(confirm)) {
-                Customer cust = new Customer(this.getPseudo(), this.getPassword(), this.getName(), this.getFirstname(), this.getEmail(), this.getPhone(), this.getAdNumber(), this.getAdStreet(), this.getAdCity(), this.getAdZipCode(), Integer.parseInt(this.getAdCountry()));
-                if(!this.getAdRegion().isEmpty())
-                    cust.setAddressregion(this.getAdRegion());
-                if(!this.getAdProvince().isEmpty())
-                    cust.setAddressprovince(this.getAdProvince());
-                List<Customer> testCust = customerFacade.findByLogin(this.getPseudo());
-                if(testCust.isEmpty()) {
-                    customerFacade.create(cust);
-                    return "index";
-                }
-                else {
-                    setErreurPseudo(true);
-                    return "register";
-                }
-            }
-            else {
-                setErreurPassword(true);
-                return "register";
-            }
-        }
-        else {
-            setErreurEmail(true);
-            return "register";
-        }
-        
-        
-        
-        
-    }
-    
-    public String setBoldErreurPseudo () {
-        if (isErreurPseudo()) {
-            setErreurPseudo(false);
-            return "erreur";
-        }
-        else {
-            setErreurPseudo(false);
-            return "hide";
-        }
-            
-    }
-    
-    public String setBoldErreurPassword () {
-        if (isErreurPassword()) {
-            setErreurPassword(false);
-            return "erreur";
-        }
-        else {
-            setErreurPassword(false);
-            return "hide";
-        }
-            
-    }
-    
-    public String setBoldErreurEmail () {
-        if (isErreurEmail()) {
-            setErreurEmail(false);
-            return "erreur";
-        }
-        else {
-            setErreurEmail(false);
-            return "hide";
-        }
-            
-    }
-    
-
     /**
      * @return the erreurPseudo
      */

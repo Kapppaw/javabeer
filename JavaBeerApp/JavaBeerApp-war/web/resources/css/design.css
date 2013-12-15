@@ -185,7 +185,7 @@ nav li a:hover {
 .item-title a {
     text-decoration: none;
     color: #bf4c41;
-    font-size: 1.4em;
+    font-size: 1.1em;
     margin-left: 20px;
 }
 .item-title a:hover {
@@ -370,7 +370,7 @@ input, select {
 
 .itemCategory {
     width: 180px;
-    height: 250px;
+    height: 270px;
     background-color: white;
     border: 1px solid #cccccc;
     display: inline-block;

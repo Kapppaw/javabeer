@@ -41,9 +41,6 @@ public class index {
     }
     
     private List<Recommended> listItemsRecommended;
-    private List<Item> listItemsBestSales;
-    
-    private boolean bob;
     
     public List<Recommended> getAllItem() {
         List<Recommended> beers = recommendedFacade.findAll();
@@ -56,7 +53,16 @@ public class index {
                 x.getItemid().setPrice(price);
             }
         }
-        return beers;
+        
+        List<Recommended> beers2 = new ArrayList<Recommended>();
+        int i = 0;
+        for (Recommended x:beers) {
+            if (i == 3)
+                break;
+            beers2.add(x);
+            i++;
+        }
+        return beers2;
     }
     
     public List<Item> getAllItemBestSales() {
@@ -86,18 +92,6 @@ public class index {
         listItemsRecommended = getAllItem();
     }
 
-    /**
-     * @return the bob
-     */
-    public boolean isBob() {
-        return bob;
-    }
-
-    /**
-     * @param bob the bob to set
-     */
-    public void setBob(boolean bob) {
-        this.bob = bob;
-    }
+    
     
 }

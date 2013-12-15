@@ -47,7 +47,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Item.findByCapacity", query = "SELECT i FROM Item i WHERE i.capacity = :capacity"),
     @NamedQuery(name = "Item.findByDegalcohol", query = "SELECT i FROM Item i WHERE i.degalcohol = :degalcohol"),
     @NamedQuery(name = "Item.findByUrlimage", query = "SELECT i FROM Item i WHERE i.urlimage = :urlimage"),
-    @NamedQuery(name = "Item.findByStock", query = "SELECT i FROM Item i WHERE i.stock = :stock"),
     @NamedQuery(name = "Item.findByQuantitysale", query = "SELECT i FROM Item i WHERE i.quantitysale = :quantitysale")})
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -84,10 +83,6 @@ public class Item implements Serializable {
     private String urlimage;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "STOCK")
-    private int stock;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "QUANTITYSALE")
     private int quantitysale;
     @JoinColumn(name = "LABELID", referencedColumnName = "ID")
@@ -111,14 +106,13 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public Item(Integer id, String name, Date datearrived, double price, int capacity, double degalcohol, int stock, int quantitysale) {
+    public Item(Integer id, String name, Date datearrived, double price, int capacity, double degalcohol, int quantitysale) {
         this.id = id;
         this.name = name;
         this.datearrived = datearrived;
         this.price = price;
         this.capacity = capacity;
         this.degalcohol = degalcohol;
-        this.stock = stock;
         this.quantitysale = quantitysale;
     }
 
@@ -176,14 +170,6 @@ public class Item implements Serializable {
 
     public void setUrlimage(String urlimage) {
         this.urlimage = urlimage;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
     }
 
     public int getQuantitysale() {

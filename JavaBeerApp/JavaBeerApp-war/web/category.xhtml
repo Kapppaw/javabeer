@@ -26,7 +26,7 @@
                                 
                                 <h:graphicImage url="#{item.urlimage}" class="item-image"/>
                                 <h:form>
-                                    <span class="item-title"><h:commandLink value="#{item.name}" action="#{beer.linkBeer(item.id)}" class="item-title">
+                                    <span class="item-title"><h:commandLink value="#{item.name}" action="#{beer.linkBeer(item.id)}" >
                                         </h:commandLink></span><br />
                                     </h:form><br />
                                 <span class="item-qte"><h:outputText value="#{msg.index_size}"/> : <h:outputText value="#{item.capacity}" />ml</span><br />

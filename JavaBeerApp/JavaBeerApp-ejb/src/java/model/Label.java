@@ -34,8 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Label.findAll", query = "SELECT l FROM Label l"),
     @NamedQuery(name = "Label.findById", query = "SELECT l FROM Label l WHERE l.id = :id"),
-    @NamedQuery(name = "Label.findByName", query = "SELECT l FROM Label l WHERE l.name = :name"),
-    @NamedQuery(name = "Label.findByUrlimage", query = "SELECT l FROM Label l WHERE l.urlimage = :urlimage")})
+    @NamedQuery(name = "Label.findByName", query = "SELECT l FROM Label l WHERE l.name = :name")})
 public class Label implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,9 +47,6 @@ public class Label implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "NAME")
     private String name;
-    @Size(max = 255)
-    @Column(name = "URLIMAGE")
-    private String urlimage;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "labelid")
     private Collection<Item> itemCollection;
 
@@ -80,14 +76,6 @@ public class Label implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getUrlimage() {
-        return urlimage;
-    }
-
-    public void setUrlimage(String urlimage) {
-        this.urlimage = urlimage;
     }
 
     @XmlTransient
