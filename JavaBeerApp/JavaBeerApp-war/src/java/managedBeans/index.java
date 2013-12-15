@@ -6,6 +6,7 @@
 
 package managedBeans;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -59,7 +60,7 @@ public class index {
     }
     
     public List<Item> getAllItemBestSales() {
-        List<Item> beers = itemFacade.findAll();
+        List<Item> beers = itemFacade.findBestSales();
         Promo promo = promoFacade.findPromoCurrent();
         double price;
         for (Item x:beers) {
@@ -69,7 +70,15 @@ public class index {
                 x.setPrice(price);
             }
         }
-        return beers;
+        List<Item> beers2 = new ArrayList<Item>();
+        int i = 0;
+        for (Item x:beers) {
+            if (i == 3)
+                break;
+            beers2.add(x);
+            i++;
+        }
+        return beers2;
     }
     
     @PostConstruct

@@ -115,12 +115,7 @@ public class Customer implements Serializable {
     @JoinColumn(name = "ADDRESSCOUNTRY", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Country addresscountry;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerid")
-    private Collection<Rankitem> rankitemCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerid")
-    private Collection<Ordercart> ordercartCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerid")
-    private Collection<Commentitem> commentitemCollection;
+    
 
     public Customer() {
     }
@@ -270,32 +265,7 @@ public class Customer implements Serializable {
         this.addresscountry = addresscountry;
     }
 
-    @XmlTransient
-    public Collection<Rankitem> getRankitemCollection() {
-        return rankitemCollection;
-    }
 
-    public void setRankitemCollection(Collection<Rankitem> rankitemCollection) {
-        this.rankitemCollection = rankitemCollection;
-    }
-
-    @XmlTransient
-    public Collection<Ordercart> getOrdercartCollection() {
-        return ordercartCollection;
-    }
-
-    public void setOrdercartCollection(Collection<Ordercart> ordercartCollection) {
-        this.ordercartCollection = ordercartCollection;
-    }
-
-    @XmlTransient
-    public Collection<Commentitem> getCommentitemCollection() {
-        return commentitemCollection;
-    }
-
-    public void setCommentitemCollection(Collection<Commentitem> commentitemCollection) {
-        this.commentitemCollection = commentitemCollection;
-    }
 
     @Override
     public int hashCode() {

@@ -6,12 +6,12 @@
 
 package managedBeans;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import model.Translatecategory;
 import model.Translateitem;
 import sessionBean.TranslateitemFacadeLocal;
 
@@ -37,8 +37,17 @@ public class news {
     }
 
     public List<Translateitem> getItems () {
+        List<Translateitem> beers =  translateitemFacade.findLast(lang.getLocale().getLanguage());
+        List<Translateitem> beers2 = new ArrayList<Translateitem>();
+        int i = 0;
+        for (Translateitem x:beers) {
+            if (i == 5)
+                break;
+            beers2.add(x);
+            i++;
+        }
+        return beers2;
         
-        return translateitemFacade.findLast(lang.getLocale().getLanguage());
         
     }
     

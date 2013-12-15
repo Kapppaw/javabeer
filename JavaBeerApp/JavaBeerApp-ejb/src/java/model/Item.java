@@ -7,7 +7,6 @@
 package model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -38,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "ITEM")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Item.findBestSales", query = "SELECT  DISTINCT(i)  FROM Item i, Category c, Categoryoftheitem ci WHERE i.id = ci.itemid.id AND ci.categoryid.id = c.id ORDER BY i.quantitysale DESC"),
+    @NamedQuery(name = "Item.findBestSales", query = "SELECT  DISTINCT(i)  FROM Item i, Category c, Categoryoftheitem ci WHERE i.id = ci.itemid.id AND ci.categoryid.id = c.id ORDER BY i.quantitysale DESC "),
     @NamedQuery(name = "Item.findByCat", query = "SELECT i FROM Item i, Category c, Categoryoftheitem ci WHERE i.id = ci.itemid.id AND ci.categoryid.id = c.id AND c.id = :idCat"),
     @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i"),
     @NamedQuery(name = "Item.findById", query = "SELECT i FROM Item i WHERE i.id = :id"),
@@ -98,15 +97,12 @@ public class Item implements Serializable {
     @ManyToOne(optional = false)
     private Country origin;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemid")
-    private Collection<Rankitem> rankitemCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemid")
     private Collection<Categoryoftheitem> categoryoftheitemCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemid")
     private Collection<Iteminorder> iteminorderCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemid")
     private Collection<Recommended> recommendedCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemid")
-    private Collection<Commentitem> commentitemCollection;
+
 
     public Item() {
     }
@@ -215,15 +211,6 @@ public class Item implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Rankitem> getRankitemCollection() {
-        return rankitemCollection;
-    }
-
-    public void setRankitemCollection(Collection<Rankitem> rankitemCollection) {
-        this.rankitemCollection = rankitemCollection;
-    }
-
-    @XmlTransient
     public Collection<Categoryoftheitem> getCategoryoftheitemCollection() {
         return categoryoftheitemCollection;
     }
@@ -248,15 +235,6 @@ public class Item implements Serializable {
 
     public void setRecommendedCollection(Collection<Recommended> recommendedCollection) {
         this.recommendedCollection = recommendedCollection;
-    }
-
-    @XmlTransient
-    public Collection<Commentitem> getCommentitemCollection() {
-        return commentitemCollection;
-    }
-
-    public void setCommentitemCollection(Collection<Commentitem> commentitemCollection) {
-        this.commentitemCollection = commentitemCollection;
     }
 
     @Override
