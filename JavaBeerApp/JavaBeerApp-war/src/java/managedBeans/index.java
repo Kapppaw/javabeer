@@ -41,6 +41,12 @@ public class index {
     }
     
     private List<Recommended> listItemsRecommended;
+    private Promo currentPromo;
+    
+    public Promo getPromo () {
+        
+        return promoFacade.findPromoCurrent();
+    }
     
     public List<Recommended> getAllItem() {
         List<Recommended> beers = recommendedFacade.findAll();

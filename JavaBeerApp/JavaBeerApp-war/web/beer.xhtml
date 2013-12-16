@@ -32,7 +32,7 @@
                         
                         <h:form>
                             <h2><h:outputText value="#{msg.item_addCart}" /></h2>
-                            <h:inputText id="qte" value="#{order.qte}" required="true" requiredMessage="#{msg.order_required}" validatorMessage="#{msg.order_validator}">
+                            <h:inputText id="qte" value="#{order.qte}" required="true" size="3" requiredMessage="#{msg.order_required}" validatorMessage="#{msg.order_validator}">
                                     <f:validateDoubleRange minimum="1" />
                                 </h:inputText>
                                 <span class="messageErrorForm"><h:message for="qte" /></span>
