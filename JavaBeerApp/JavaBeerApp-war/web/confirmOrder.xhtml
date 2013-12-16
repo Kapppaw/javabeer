@@ -34,6 +34,8 @@
                         </h:column>
                     </h:dataTable>
                     
+                    <h:outputText value="Total = #{order.total} €" id="totalorder" />
+                    
                     <h:form>
                         <c:if test="#{connexion.connected}">
                             <h:commandButton value="#{msg.order_confirm}" action="#{order.validCommand()}" class="button" rendered="#{order.nbItems != 0}"/>

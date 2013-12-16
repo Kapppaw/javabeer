@@ -408,7 +408,7 @@ input, select {
     
 }
 table {
-    border-collapse: collapse; 
+    margin-bottom: 30px;
 }
 .tableHeader{
     background-color: #ebf2f2;
@@ -426,7 +426,17 @@ table {
 .tablePrice {
     width: 150px;
 }
+td
+{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding : 5px;
+}
 
+#totalorder {
+    margin-left: 800px;
+    font-weight: bold;
+}
 
 
 .newsItem {

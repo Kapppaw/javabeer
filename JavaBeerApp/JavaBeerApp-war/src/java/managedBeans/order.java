@@ -47,6 +47,7 @@ public class order {
     
     @ManagedProperty("#{connexion}")
     private connexion connex;
+    private double total;
     
     /**
      * Creates a new instance of order
@@ -76,7 +77,7 @@ public class order {
             Iteminorder item = new Iteminorder(qte, price, currentItem);
             orderMap.put(id, item);
         }
-        
+        calculTotal();
         
         
     }
@@ -84,6 +85,7 @@ public class order {
     public void deleteItem (int id) {
         orderMap.remove(id);
         nbItems--;
+        calculTotal();
     }
     
     public void downQte (int id) {
@@ -91,10 +93,12 @@ public class order {
         if (orderMap.get(id).getQuantity() == 0) {
             deleteItem(id);
         }
+        calculTotal();
     }
     
     public void upQte (int id) {
         orderMap.get(id).setQuantity(orderMap.get(id).getQuantity() + 1);
+        calculTotal();
     }
 
     public String validCommand() {
@@ -174,6 +178,30 @@ public class order {
      */
     public void setConnex(connexion conne) {
         this.connex = conne;
+    }
+
+    /**
+     * @return the total
+     */
+    public double getTotal() {
+        return total;
+    }
+
+    /**
+     * @param total the total to set
+     */
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
+    public void calculTotal() {
+        double total = 0;
+        for(Entry<Integer, Iteminorder> item : orderMap.entrySet()) {
+            
+            total += item.getValue().getPrice() * item.getValue().getQuantity();     
+         
+        }
+        setTotal(total);
     }
        
    
