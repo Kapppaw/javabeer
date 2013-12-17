@@ -13,6 +13,7 @@
                 <section id="body">
                     <article id="resume">
                         <h:graphicImage url="#{beer.beer.itemid.urlimage}" class="item-image"/>
+                        <img src="resources/img/sale.png" alt="Sale" class="#{index.setPromoVisible(beer.beer.itemid)}"  />
                         <p>
                             <h:outputText value="#{msg.item_colour}"/> : <ui:repeat value="#{beer.listCategories()}" var="cat">
                                 <h:outputText value="#{cat.colourname} "/>

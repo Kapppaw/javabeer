@@ -53,10 +53,12 @@ public class index {
         Promo promo = promoFacade.findPromoCurrent();
         double price;
         for (Recommended x:beers) {
+            //x.getItemid().setPromo(false);
             if (promo.getCountrypromo().getId() == x.getItemid().getOrigin().getId()) {
                 price = (x.getItemid().getPrice());
                 price -= (promo.getReduction()*price/100);
                 x.getItemid().setPrice(price);
+                
             }
         }
         
@@ -71,6 +73,32 @@ public class index {
         return beers2;
     }
     
+    //private boolean promo;
+    
+    public String setPromoVisible(Item item) {
+        
+        Promo promo = promoFacade.findPromoCurrent();
+        if (promo.getCountrypromo().getId() == item.getOrigin().getId()) {
+            return "item-sale-img";
+        }
+        else {
+            return "item-sale-img hide";
+        }
+        
+        
+        
+    }
+    /*
+    public boolean promotion (Item item) {
+        Promo promo = promoFacade.findPromoCurrent();
+        if (promo.getCountrypromo().getId() == item.getOrigin().getId()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    */
     public List<Item> getAllItemBestSales() {
         List<Item> beers = itemFacade.findBestSales();
         Promo promo = promoFacade.findPromoCurrent();
@@ -97,6 +125,20 @@ public class index {
     public void init() {
         listItemsRecommended = getAllItem();
     }
+
+    /**
+     * @return the promo
+     *//*
+    public boolean isPromo() {
+        return promo;
+    }
+*/
+    /**
+     * @param promo the promo to set
+     *//*
+    public void setPromo(boolean promo) {
+        this.promo = promo;
+    }*/
 
     
     

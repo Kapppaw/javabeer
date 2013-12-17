@@ -25,6 +25,7 @@
                             <div class="itemCategory">
                                 
                                 <h:graphicImage url="#{item.urlimage}" class="item-image"/>
+                                <img src="resources/img/sale.png" alt="Sale" class="#{index.setPromoVisible(item)}"  />
                                 <h:form>
                                     <span class="item-title"><h:commandLink value="#{item.name}" action="#{beer.linkBeer(item.id)}" >
                                         </h:commandLink></span><br />

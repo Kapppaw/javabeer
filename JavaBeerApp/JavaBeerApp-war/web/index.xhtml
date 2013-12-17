@@ -23,7 +23,7 @@
                         <li class="item">
                             <p>
                                 <h:graphicImage url="#{item.itemid.urlimage}" class="item-image"/>
-                                <!--<img src="resources/img/sale.png" alt="Sale" class="item-sale-img"  />-->
+                                <img src="resources/img/sale.png" alt="Sale" class="#{index.setPromoVisible(item.itemid)}"  />
                                 <h:form>
                                     <span class="item-title"><h:commandLink value="#{item.itemid.name}" action="#{beer.linkBeer(item.itemid.id)}" class="item-title">
                                         </h:commandLink></span><br />
@@ -41,6 +41,7 @@
                         <li class="item">
                             <p>
                                 <h:graphicImage url="#{itemBestSale.urlimage}" class="item-image"/>
+                                <img src="resources/img/sale.png" alt="Sale" class="#{index.setPromoVisible(itemBestSale)}"  />
                                 <h:form>
                                     <span class="item-title"><h:commandLink value="#{itemBestSale.name}" action="#{beer.linkBeer(itemBestSale.id)}" class="item-title">
                                         </h:commandLink></span><br />

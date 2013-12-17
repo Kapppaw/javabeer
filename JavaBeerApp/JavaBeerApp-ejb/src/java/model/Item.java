@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -65,7 +66,7 @@ public class Item implements Serializable {
     @Column(name = "DATEARRIVED")
     @Temporal(TemporalType.DATE)
     private Date datearrived;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Min(value=0)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Column(name = "PRICE")
@@ -97,6 +98,8 @@ public class Item implements Serializable {
     private Collection<Iteminorder> iteminorderCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemid")
     private Collection<Recommended> recommendedCollection;
+    
+    //private boolean promo;
 
 
     public Item() {
@@ -247,5 +250,19 @@ public class Item implements Serializable {
     public String toString() {
         return "data.Item[ id=" + id + " ]";
     }
+
+    /**
+     * @return the promo
+     */
+    /*public boolean isPromo() {
+        return promo;
+    }
+*/
+    /**
+     * @param promo the promo to set
+     */
+    /*public void setPromo(boolean promo) {
+        this.promo = promo;
+    }*/
     
 }
