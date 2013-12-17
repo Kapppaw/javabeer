@@ -380,6 +380,7 @@ input, select {
 }
 
 #resume {
+    position: relative;
     width: 200px;
     float:left;
 }

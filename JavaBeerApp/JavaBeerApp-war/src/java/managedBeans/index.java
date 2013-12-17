@@ -41,7 +41,6 @@ public class index {
     }
     
     private List<Recommended> listItemsRecommended;
-    private Promo currentPromo;
     
     public Promo getPromo () {
         
@@ -73,10 +72,7 @@ public class index {
         return beers2;
     }
     
-    //private boolean promo;
-    
-    public String setPromoVisible(Item item) {
-        
+    public String setPromoVisible(Item item) {    
         Promo promo = promoFacade.findPromoCurrent();
         if (promo.getCountrypromo().getId() == item.getOrigin().getId()) {
             return "item-sale-img";
@@ -84,21 +80,8 @@ public class index {
         else {
             return "item-sale-img hide";
         }
-        
-        
-        
     }
-    /*
-    public boolean promotion (Item item) {
-        Promo promo = promoFacade.findPromoCurrent();
-        if (promo.getCountrypromo().getId() == item.getOrigin().getId()) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    */
+
     public List<Item> getAllItemBestSales() {
         List<Item> beers = itemFacade.findBestSales();
         Promo promo = promoFacade.findPromoCurrent();
@@ -124,22 +107,6 @@ public class index {
     @PostConstruct
     public void init() {
         listItemsRecommended = getAllItem();
-    }
-
-    /**
-     * @return the promo
-     *//*
-    public boolean isPromo() {
-        return promo;
-    }
-*/
-    /**
-     * @param promo the promo to set
-     *//*
-    public void setPromo(boolean promo) {
-        this.promo = promo;
-    }*/
-
-    
+    }    
     
 }

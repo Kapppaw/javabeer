@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import model.Item;
 import model.Promo;
 import model.Translatecategory;
 import model.Translatecountry;
@@ -61,7 +62,15 @@ public class beer {
         return getOrigin();
     }
     
-    
+    public String isPromo (Item item) {
+        Promo promo = promoFacade.findPromoCurrent();
+        if (promo.getCountrypromo().getId() == item.getOrigin().getId()) {
+            return "";
+        }
+        else {
+            return "hide";
+        }
+    }
     
     public Translateitem getBeer() {
         Translateitem beer = translateitemFacade.findOne(beerId, lang.getLocale().getLanguage());
