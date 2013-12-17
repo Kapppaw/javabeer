@@ -64,11 +64,14 @@ public class beer {
     
     public String isPromo (Item item) {
         Promo promo = promoFacade.findPromoCurrent();
+        Translateitem beer = translateitemFacade.findOne(beerId, lang.getLocale().getLanguage());
         if (promo.getCountrypromo().getId() == item.getOrigin().getId()) {
-            return "";
+            double price2;
+            price2 = item.getPrice() + (beer.getItemid().getPrice()*promo.getReduction()/100);
+            return Double.toString(price2) + "€ " ;
         }
         else {
-            return "hide";
+            return "";
         }
     }
     

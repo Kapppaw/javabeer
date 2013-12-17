@@ -19,7 +19,7 @@
                                 <h:outputText value="#{cat.colourname} "/>
                                 
                                                 </ui:repeat><br />
-                            <h:outputText value="#{msg.item_price}"/> : <h:outputText value="#{beer.beer.itemid.price}"/>€<br />
+                            <h:outputText value="#{msg.item_price}"/> : <h:outputText value="#{beer.isPromo(beer.beer.itemid)}" class="barre"/><h:outputText value="#{beer.beer.itemid.price}"/>€<br />
                             <h:outputText value="#{msg.item_size}"/> : <h:outputText value="#{beer.beer.itemid.capacity}"/>ml<br />
                             <h:outputText value="#{msg.item_degAlcohol}"/> : <h:outputText value="#{beer.beer.itemid.degalcohol}"/>°<br />
                             <h:outputText value="#{msg.item_origin}"/> : <h:outputText value="#{beer.origine().countryname}"/><br />
