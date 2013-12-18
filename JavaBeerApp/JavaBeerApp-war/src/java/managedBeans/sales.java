@@ -10,7 +10,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+
 import model.Promo;
 import model.Translateitem;
 import sessionBean.PromoFacadeLocal;
